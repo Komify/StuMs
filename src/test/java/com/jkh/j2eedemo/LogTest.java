@@ -22,6 +22,6 @@ public class LogTest {
         log.setModuleName("xxxx");
         log.setFinishDate(new Date());
         int i = logdao.add(log);
-        System.out.println("添加了["+i+"]条数据!");
+        System.out.println("添加了["+i+"]条数据ddd!");
     }
 }
