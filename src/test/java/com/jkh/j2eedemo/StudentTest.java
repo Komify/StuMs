@@ -55,7 +55,7 @@ public class StudentTest {
 */
     @Test
     void testAddStu() {
-        stu.setId("ceshi454568787");
+        stu.setId("ceshi455554568787");
         stu.setName("小雨");
         stu.setMySex("女");
         stu.setSno("66666666");
@@ -148,3 +148,4 @@ public class StudentTest {
         System.out.println(ceshi10);
     }
 }
+//业务层进行了aop配置
