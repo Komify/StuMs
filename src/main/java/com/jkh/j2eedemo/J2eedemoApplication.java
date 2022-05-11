@@ -7,12 +7,10 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @MapperScan("com.jkh.j2eedemo.dao")
-@ComponentScan(basePackages = {"com.jkh.j2eedemo.entity", "com.jkh.j2eedemo.bll.impl","com.jkh.j2eedemo.aspect"})
+@ComponentScan(basePackages = {"com.jkh.j2eedemo.entity", "com.jkh.j2eedemo.bll.impl",
+        "com.jkh.j2eedemo.aspect", "com.jkh.j2eedemo.controller"})
 public class J2eedemoApplication {
-
-        public static void main(String[] args) {
-
-            SpringApplication.run(J2eedemoApplication.class, args);
+    public static void main(String[] args) {
+        SpringApplication.run(J2eedemoApplication.class, args);
     }
-
 }

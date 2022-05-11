@@ -11,11 +11,11 @@
         </collection>
     </resultMap>
 
-<!--根据班级id查询班级-->
+    <!--根据班级id查询班级-->
     <select id="findById" parameterType="java.lang.String" resultType="com.jkh.j2eedemo.entity.StudentClass">
         select * from studentclass where id=#{id}
     </select>
-<!--根据班级查询班级的学生-->
+    <!--根据班级查询班级的学生-->
     <select id="findStus" resultType="com.jkh.j2eedemo.entity.Student"
             parameterType="java.lang.String">
         select * from student where myClass=#{id}

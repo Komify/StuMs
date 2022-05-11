@@ -139,9 +139,9 @@
                 <when test="myClass!=''">
                     and myClass=#{myclass}
                 </when>
-         <otherwise>
-                 and id is not null
-         </otherwise>
+                <otherwise>
+                    and id is not null
+                </otherwise>
             </choose>
         </where>
     </sql>
