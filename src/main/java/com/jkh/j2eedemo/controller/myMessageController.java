@@ -1,5 +1,6 @@
 package com.jkh.j2eedemo.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.jkh.j2eedemo.entity.Student;
 import com.jkh.j2eedemo.entity.StudentClass;
 import org.springframework.stereotype.Controller;
@@ -13,7 +14,10 @@ public class myMessageController {
     public String showmymsg() {
         return "mvc";
     }
-
+    @RequestMapping("index")
+    public String showindex() {
+        return "index";
+    }
 
     //    测试请求
     @RequestMapping("request")
@@ -56,9 +60,14 @@ public class myMessageController {
 //pojo绑定
     @RequestMapping(value = "addstu",method= RequestMethod.POST)
     @ResponseBody
-    public void addstudent(Student student){
+    public String addstudent(Student student){
         System.out.println("注册");
         System.out.println("姓名:"+student.getName());
         System.out.println("学号"+student.getSno());
+        System.out.println("班级"+student.getMyClass().getName());
+        System.out.println("性别"+student.getMySex());
+        System.out.println("创建时间"+student.getCreateDate());
+
+        return JSON.toJSONString(student);
     }
 }
