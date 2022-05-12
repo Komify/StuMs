@@ -3,18 +3,15 @@ package com.jkh.j2eedemo.controller;
 import com.jkh.j2eedemo.entity.Student;
 import com.jkh.j2eedemo.entity.StudentClass;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class myMessageController {
-    @RequestMapping("index")
+    @RequestMapping("mvc")
     public String showmymsg() {
-        return "index";
+        return "mvc";
     }
 
 
@@ -55,5 +52,13 @@ public class myMessageController {
         System.out.println("rstful风格");
         System.out.println("姓名:" + name);
         System.out.println("班级:" + myclass);
+    }
+//pojo绑定
+    @RequestMapping(value = "addstu",method= RequestMethod.POST)
+    @ResponseBody
+    public void addstudent(Student student){
+        System.out.println("注册");
+        System.out.println("姓名:"+student.getName());
+        System.out.println("学号"+student.getSno());
     }
 }
