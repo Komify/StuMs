@@ -1,4 +1,4 @@
-package com.jkh.j2eedemo.controller;
+package com.jkh.j2eedemo.controller.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.jkh.j2eedemo.entity.Student;
@@ -69,5 +69,16 @@ public class myMessageController {
         System.out.println("创建时间"+student.getCreateDate());
 
         return JSON.toJSONString(student);
+    }
+
+    @RequestMapping("addstu")
+    public String addstu(){
+        return "addstu";
+    }
+    @RequestMapping(value = "doadd",method = RequestMethod.POST)
+    public void doadd(String[] ids){
+        for (String s:ids) {
+            System.out.println(s);
+        }
     }
 }
