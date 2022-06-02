@@ -81,7 +81,7 @@ public abstract class AbsSuperService implements AbsSuperServiceInter {
         if (model == null) {
             back.setCode("0000");
             back.setMessage("未录入学生信息！");
-            back.setObj(null);
+            back.setObj(0);
         }
         back = checkDAO();
         if ((Boolean) back.getObj() == false) return back;
@@ -89,11 +89,11 @@ public abstract class AbsSuperService implements AbsSuperServiceInter {
         if (addNum > 0) {
             back.setCode("6666");
             back.setMessage("添加数据成功！");
-            back.setObj(null);
+            back.setObj(1);
         } else {
             back.setCode("0000");
             back.setMessage("添加数据失败！");
-            back.setObj(null);
+            back.setObj(0);
         }
         return back;
     }
@@ -198,7 +198,7 @@ public abstract class AbsSuperService implements AbsSuperServiceInter {
             back.setObj(null);
             return back;
         }
-        if (model == null || model.getName() == null) {
+        if (model == null || model.getId() == null) {
             back.setCode("0000");
             back.setMessage("数据未设置");
             back.setObj(null);
@@ -343,7 +343,7 @@ public abstract class AbsSuperService implements AbsSuperServiceInter {
             if (length>0){
             back.setCode("6666");
             back.setMessage("数据查询成功！共查询到【" + length + "】条数据");
-            back.setObj(length);
+            back.setObj(res);
             }
         } else {
             back.setCode("0000");

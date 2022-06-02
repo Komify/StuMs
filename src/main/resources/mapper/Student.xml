@@ -114,7 +114,7 @@
     </insert>
     <!--    测试删除学生-->
     <delete id="del" parameterType="com.jkh.j2eedemo.entity.Student">
-    delete from student where name like '%${name}%'
+    delete from student where id =#{id}
 </delete>
     <!--    批量修改学生信息-->
     <update id="batchUpdat" parameterType="java.util.List">
@@ -136,8 +136,11 @@
                 <when test="name!=null and name!=''">
                     and name like '%${name}%'
                 </when>
-                <when test="myClass!=''">
-                    and myClass=#{myclass}
+                <when test="id!=null and id!=''">
+                    and id like '%${id}%'
+                </when>
+                <when test="myClass!='' and myClass!=null">
+                    and myClass=#{myClass}
                 </when>
                 <otherwise>
                     and id is not null

@@ -29,7 +29,7 @@ public class StudentTest {
      */
     @Test
     void testFindStuById() {
-        stu.setId("ceshi56");
+        stu.setId("25");
         bll.setModel(stu);
         KesunReturn back = bll.findStuById();
         System.out.println(back.getMessage());
@@ -103,7 +103,7 @@ public class StudentTest {
         ArrayList<AbsSuperObject> objs = new ArrayList<>();
         for (int i = 0; i <1000 ; i++) {
             Student stu = new Student();
-            stu.setName("吉康辉"+i);
+            stu.setName(i+"");
             stu.setId("ceshi"+i);
             stu.setSno("20325"+i);
             stu.setMyAge(20);
