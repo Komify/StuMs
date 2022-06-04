@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jkh.j2eedemo.dao.GxxsMapper">
+    <resultMap id="BaseResultMap" type="com.jkh.j2eedemo.entity.Gxxs">
+        <id column="jnm" jdbcType="VARCHAR" property="jnm" />
+        <result column="xh" jdbcType="VARCHAR" property="xh" />
+        <result column="dwh" jdbcType="VARCHAR" property="dwh" />
+        <result column="xm" jdbcType="VARCHAR" property="xm" />
+        <result column="ywxm" jdbcType="VARCHAR" property="ywxm" />
+        <result column="xmpy" jdbcType="VARCHAR" property="xmpy" />
+        <result column="cym" jdbcType="VARCHAR" property="cym" />
+        <result column="xb" jdbcType="CHAR" property="xb" />
+        <result column="csrq" jdbcType="DATE" property="csrq" />
+        <result column="csd" jdbcType="VARCHAR" property="csd" />
+        <result column="jg" jdbcType="VARCHAR" property="jg" />
+        <result column="mz" jdbcType="VARCHAR" property="mz" />
+        <result column="gj" jdbcType="VARCHAR" property="gj" />
+        <result column="sfzjlx" jdbcType="VARCHAR" property="sfzjlx" />
+        <result column="sfzjh" jdbcType="VARCHAR" property="sfzjh" />
+        <result column="hyzk" jdbcType="CHAR" property="hyzk" />
+        <result column="zzmm" jdbcType="VARCHAR" property="zzmm" />
+        <result column="jkzk" jdbcType="VARCHAR" property="jkzk" />
+        <result column="xyzj" jdbcType="VARCHAR" property="xyzj" />
+        <result column="xx" jdbcType="CHAR" property="xx" />
+        <result column="zjyxq" jdbcType="DATE" property="zjyxq" />
+        <result column="ssbm" jdbcType="VARCHAR" property="ssbm" />
+        <result column="ssbj" jdbcType="VARCHAR" property="ssbj" />
+    </resultMap>
+  <insert id="insert" parameterType="com.jkh.j2eedemo.entity.Gxxs">
+    insert into gxxs (jnm, xh, dwh,
+      xm, ywxm, xmpy, cym,
+      xb, csrq, csd, jg,
+      mz, gj, sfzjlx, sfzjh,
+      hyzk, zzmm, jkzk, xyzj,
+      xx, zjyxq, ssbm, ssbj)
+    values (uuid(), #{xh,jdbcType=VARCHAR}, #{dwh,jdbcType=VARCHAR},
+      rand_name(1), #{ywxm,jdbcType=VARCHAR}, #{xmpy,jdbcType=VARCHAR}, #{cym,jdbcType=VARCHAR},
+      #{xb,jdbcType=CHAR}, #{csrq,jdbcType=DATE}, #{csd,jdbcType=VARCHAR}, #{jg,jdbcType=VARCHAR},
+      #{mz,jdbcType=VARCHAR}, #{gj,jdbcType=VARCHAR}, #{sfzjlx,jdbcType=VARCHAR}, #{sfzjh,jdbcType=VARCHAR},
+      #{hyzk,jdbcType=CHAR}, #{zzmm,jdbcType=VARCHAR}, #{jkzk,jdbcType=VARCHAR}, #{xyzj,jdbcType=VARCHAR},
+      #{xx,jdbcType=CHAR}, #{zjyxq,jdbcType=DATE}, #{ssbm,jdbcType=VARCHAR}, #{ssbj,jdbcType=VARCHAR})
+  </insert>
+</mapper>
+
+
+

@@ -55,9 +55,9 @@ public class StudentController {
     @CrossOrigin
     public KesunReturn showbypage(@RequestBody Map<String,Object> cons) {
         Map<String, Object> con = new HashMap<>();
-        con.put("myClass", cons.get("myClass"));
-        con.put("name", cons.get("name"));
-        con.put("id", cons.get("id"));
+        con.put("ssbj", cons.get("myClass"));
+        con.put("xm", cons.get("name"));
+        con.put("xh", cons.get("id"));
        int startpage=(int)cons.get("startpage");
         KesunReturn back = bll.findByPage(con, startpage, 10);
         return back;
@@ -67,9 +67,9 @@ public class StudentController {
     @ResponseBody
     public KesunReturn getshowpagetotal(@RequestBody Map<String, Object> conss) {
         Map<String, Object> con = new HashMap<>();
-        con.put("myClass", conss.get("myClass"));
-        con.put("name", conss.get("name"));
-        con.put("id", conss.get("id"));
+        con.put("ssbj", conss.get("myClass"));
+        con.put("xm", conss.get("name"));
+        con.put("xh", conss.get("id"));
         KesunReturn back = bll.getRowscount(con);
         return back;
     }

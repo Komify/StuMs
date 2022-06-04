@@ -1,0 +1,1165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jkh.j2eedemo.util.GxxsMapper.1">
+  <resultMap id="BaseResultMap" type="com.jkh.j2eedemo.entity.Gxxs">
+    <id column="jnm" jdbcType="VARCHAR" property="jnm" />
+    <result column="xh" jdbcType="VARCHAR" property="xh" />
+    <result column="dwh" jdbcType="VARCHAR" property="dwh" />
+    <result column="xm" jdbcType="VARCHAR" property="xm" />
+    <result column="ywxm" jdbcType="VARCHAR" property="ywxm" />
+    <result column="xmpy" jdbcType="VARCHAR" property="xmpy" />
+    <result column="cym" jdbcType="VARCHAR" property="cym" />
+    <result column="xb" jdbcType="CHAR" property="xb" />
+    <result column="csrq" jdbcType="DATE" property="csrq" />
+    <result column="csd" jdbcType="VARCHAR" property="csd" />
+    <result column="jg" jdbcType="VARCHAR" property="jg" />
+    <result column="mz" jdbcType="VARCHAR" property="mz" />
+    <result column="gj" jdbcType="VARCHAR" property="gj" />
+    <result column="sfzjlx" jdbcType="VARCHAR" property="sfzjlx" />
+    <result column="sfzjh" jdbcType="VARCHAR" property="sfzjh" />
+    <result column="hyzk" jdbcType="CHAR" property="hyzk" />
+    <result column="zzmm" jdbcType="VARCHAR" property="zzmm" />
+    <result column="jkzk" jdbcType="VARCHAR" property="jkzk" />
+    <result column="xyzj" jdbcType="VARCHAR" property="xyzj" />
+    <result column="xx" jdbcType="CHAR" property="xx" />
+    <result column="zjyxq" jdbcType="DATE" property="zjyxq" />
+    <result column="ssbm" jdbcType="VARCHAR" property="ssbm" />
+    <result column="ssbj" jdbcType="VARCHAR" property="ssbj" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.jkh.j2eedemo.entity.Gxxs">
+    <result column="zp" jdbcType="BINARY" property="zp" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    jnm, xh, dwh, xm, ywxm, xmpy, cym, xb, csrq, csd, jg, mz, gj, sfzjlx, sfzjh, hyzk, 
+    zzmm, jkzk, xyzj, xx, zjyxq, ssbm, ssbj
+  </sql>
+  <sql id="Blob_Column_List">
+    zp
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.jkh.j2eedemo.util.GxxsExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from gxxs
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.jkh.j2eedemo.util.GxxsExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from gxxs
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from gxxs
+    where jnm = #{jnm,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from gxxs
+    where jnm = #{jnm,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jkh.j2eedemo.util.GxxsExample">
+    delete from gxxs
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jkh.j2eedemo.entity.Gxxs.9">
+    insert into gxxs (jnm, xh, dwh, 
+      xm, ywxm, xmpy, cym, 
+      xb, csrq, csd, jg, 
+      mz, gj, sfzjlx, sfzjh, 
+      hyzk, zzmm, jkzk, xyzj, 
+      xx, zjyxq, ssbm, ssbj, 
+      zp)
+    values (uuid(), #{xh,jdbcType=VARCHAR}, #{dwh,jdbcType=VARCHAR},
+      rand_name(), #{ywxm,jdbcType=VARCHAR}, #{xmpy,jdbcType=VARCHAR}, #{cym,jdbcType=VARCHAR},
+      #{xb,jdbcType=CHAR}, #{csrq,jdbcType=DATE}, #{csd,jdbcType=VARCHAR}, #{jg,jdbcType=VARCHAR}, 
+      #{mz,jdbcType=VARCHAR}, #{gj,jdbcType=VARCHAR}, #{sfzjlx,jdbcType=VARCHAR}, #{sfzjh,jdbcType=VARCHAR}, 
+      #{hyzk,jdbcType=CHAR}, #{zzmm,jdbcType=VARCHAR}, #{jkzk,jdbcType=VARCHAR}, #{xyzj,jdbcType=VARCHAR}, 
+      #{xx,jdbcType=CHAR}, #{zjyxq,jdbcType=DATE}, #{ssbm,jdbcType=VARCHAR}, #{ssbj,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jkh.j2eedemo.entity.Gxxs">
+    insert into gxxs
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="jnm != null">
+        jnm,
+      </if>
+      <if test="xh != null">
+        xh,
+      </if>
+      <if test="dwh != null">
+        dwh,
+      </if>
+      <if test="xm != null">
+        xm,
+      </if>
+      <if test="ywxm != null">
+        ywxm,
+      </if>
+      <if test="xmpy != null">
+        xmpy,
+      </if>
+      <if test="cym != null">
+        cym,
+      </if>
+      <if test="xb != null">
+        xb,
+      </if>
+      <if test="csrq != null">
+        csrq,
+      </if>
+      <if test="csd != null">
+        csd,
+      </if>
+      <if test="jg != null">
+        jg,
+      </if>
+      <if test="mz != null">
+        mz,
+      </if>
+      <if test="gj != null">
+        gj,
+      </if>
+      <if test="sfzjlx != null">
+        sfzjlx,
+      </if>
+      <if test="sfzjh != null">
+        sfzjh,
+      </if>
+      <if test="hyzk != null">
+        hyzk,
+      </if>
+      <if test="zzmm != null">
+        zzmm,
+      </if>
+      <if test="jkzk != null">
+        jkzk,
+      </if>
+      <if test="xyzj != null">
+        xyzj,
+      </if>
+      <if test="xx != null">
+        xx,
+      </if>
+      <if test="zjyxq != null">
+        zjyxq,
+      </if>
+      <if test="ssbm != null">
+        ssbm,
+      </if>
+      <if test="ssbj != null">
+        ssbj,
+      </if>
+      <if test="zp != null">
+        zp,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="jnm != null">
+        #{jnm,jdbcType=VARCHAR},
+      </if>
+      <if test="xh != null">
+        #{xh,jdbcType=VARCHAR},
+      </if>
+      <if test="dwh != null">
+        #{dwh,jdbcType=VARCHAR},
+      </if>
+      <if test="xm != null">
+        #{xm,jdbcType=VARCHAR},
+      </if>
+      <if test="ywxm != null">
+        #{ywxm,jdbcType=VARCHAR},
+      </if>
+      <if test="xmpy != null">
+        #{xmpy,jdbcType=VARCHAR},
+      </if>
+      <if test="cym != null">
+        #{cym,jdbcType=VARCHAR},
+      </if>
+      <if test="xb != null">
+        #{xb,jdbcType=CHAR},
+      </if>
+      <if test="csrq != null">
+        #{csrq,jdbcType=DATE},
+      </if>
+      <if test="csd != null">
+        #{csd,jdbcType=VARCHAR},
+      </if>
+      <if test="jg != null">
+        #{jg,jdbcType=VARCHAR},
+      </if>
+      <if test="mz != null">
+        #{mz,jdbcType=VARCHAR},
+      </if>
+      <if test="gj != null">
+        #{gj,jdbcType=VARCHAR},
+      </if>
+      <if test="sfzjlx != null">
+        #{sfzjlx,jdbcType=VARCHAR},
+      </if>
+      <if test="sfzjh != null">
+        #{sfzjh,jdbcType=VARCHAR},
+      </if>
+      <if test="hyzk != null">
+        #{hyzk,jdbcType=CHAR},
+      </if>
+      <if test="zzmm != null">
+        #{zzmm,jdbcType=VARCHAR},
+      </if>
+      <if test="jkzk != null">
+        #{jkzk,jdbcType=VARCHAR},
+      </if>
+      <if test="xyzj != null">
+        #{xyzj,jdbcType=VARCHAR},
+      </if>
+      <if test="xx != null">
+        #{xx,jdbcType=CHAR},
+      </if>
+      <if test="zjyxq != null">
+        #{zjyxq,jdbcType=DATE},
+      </if>
+      <if test="ssbm != null">
+        #{ssbm,jdbcType=VARCHAR},
+      </if>
+      <if test="ssbj != null">
+        #{ssbj,jdbcType=VARCHAR},
+      </if>
+      <if test="zp != null">
+        #{zp,jdbcType=BINARY},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jkh.j2eedemo.util.GxxsExample" resultType="java.lang.Long">
+    select count(*) from gxxs
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update gxxs
+    <set>
+      <if test="record.jnm != null">
+        jnm = #{record.jnm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xh != null">
+        xh = #{record.xh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dwh != null">
+        dwh = #{record.dwh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xm != null">
+        xm = #{record.xm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ywxm != null">
+        ywxm = #{record.ywxm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xmpy != null">
+        xmpy = #{record.xmpy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cym != null">
+        cym = #{record.cym,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xb != null">
+        xb = #{record.xb,jdbcType=CHAR},
+      </if>
+      <if test="record.csrq != null">
+        csrq = #{record.csrq,jdbcType=DATE},
+      </if>
+      <if test="record.csd != null">
+        csd = #{record.csd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jg != null">
+        jg = #{record.jg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mz != null">
+        mz = #{record.mz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gj != null">
+        gj = #{record.gj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sfzjlx != null">
+        sfzjlx = #{record.sfzjlx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sfzjh != null">
+        sfzjh = #{record.sfzjh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hyzk != null">
+        hyzk = #{record.hyzk,jdbcType=CHAR},
+      </if>
+      <if test="record.zzmm != null">
+        zzmm = #{record.zzmm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jkzk != null">
+        jkzk = #{record.jkzk,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xyzj != null">
+        xyzj = #{record.xyzj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xx != null">
+        xx = #{record.xx,jdbcType=CHAR},
+      </if>
+      <if test="record.zjyxq != null">
+        zjyxq = #{record.zjyxq,jdbcType=DATE},
+      </if>
+      <if test="record.ssbm != null">
+        ssbm = #{record.ssbm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ssbj != null">
+        ssbj = #{record.ssbj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zp != null">
+        zp = #{record.zp,jdbcType=BINARY},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update gxxs
+    set jnm = #{record.jnm,jdbcType=VARCHAR},
+      xh = #{record.xh,jdbcType=VARCHAR},
+      dwh = #{record.dwh,jdbcType=VARCHAR},
+      xm = #{record.xm,jdbcType=VARCHAR},
+      ywxm = #{record.ywxm,jdbcType=VARCHAR},
+      xmpy = #{record.xmpy,jdbcType=VARCHAR},
+      cym = #{record.cym,jdbcType=VARCHAR},
+      xb = #{record.xb,jdbcType=CHAR},
+      csrq = #{record.csrq,jdbcType=DATE},
+      csd = #{record.csd,jdbcType=VARCHAR},
+      jg = #{record.jg,jdbcType=VARCHAR},
+      mz = #{record.mz,jdbcType=VARCHAR},
+      gj = #{record.gj,jdbcType=VARCHAR},
+      sfzjlx = #{record.sfzjlx,jdbcType=VARCHAR},
+      sfzjh = #{record.sfzjh,jdbcType=VARCHAR},
+      hyzk = #{record.hyzk,jdbcType=CHAR},
+      zzmm = #{record.zzmm,jdbcType=VARCHAR},
+      jkzk = #{record.jkzk,jdbcType=VARCHAR},
+      xyzj = #{record.xyzj,jdbcType=VARCHAR},
+      xx = #{record.xx,jdbcType=CHAR},
+      zjyxq = #{record.zjyxq,jdbcType=DATE},
+      ssbm = #{record.ssbm,jdbcType=VARCHAR},
+      ssbj = #{record.ssbj,jdbcType=VARCHAR},
+      zp = #{record.zp,jdbcType=BINARY}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update gxxs
+    set jnm = #{record.jnm,jdbcType=VARCHAR},
+      xh = #{record.xh,jdbcType=VARCHAR},
+      dwh = #{record.dwh,jdbcType=VARCHAR},
+      xm = #{record.xm,jdbcType=VARCHAR},
+      ywxm = #{record.ywxm,jdbcType=VARCHAR},
+      xmpy = #{record.xmpy,jdbcType=VARCHAR},
+      cym = #{record.cym,jdbcType=VARCHAR},
+      xb = #{record.xb,jdbcType=CHAR},
+      csrq = #{record.csrq,jdbcType=DATE},
+      csd = #{record.csd,jdbcType=VARCHAR},
+      jg = #{record.jg,jdbcType=VARCHAR},
+      mz = #{record.mz,jdbcType=VARCHAR},
+      gj = #{record.gj,jdbcType=VARCHAR},
+      sfzjlx = #{record.sfzjlx,jdbcType=VARCHAR},
+      sfzjh = #{record.sfzjh,jdbcType=VARCHAR},
+      hyzk = #{record.hyzk,jdbcType=CHAR},
+      zzmm = #{record.zzmm,jdbcType=VARCHAR},
+      jkzk = #{record.jkzk,jdbcType=VARCHAR},
+      xyzj = #{record.xyzj,jdbcType=VARCHAR},
+      xx = #{record.xx,jdbcType=CHAR},
+      zjyxq = #{record.zjyxq,jdbcType=DATE},
+      ssbm = #{record.ssbm,jdbcType=VARCHAR},
+      ssbj = #{record.ssbj,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jkh.j2eedemo.entity.Gxxs">
+    update gxxs
+    <set>
+      <if test="xh != null">
+        xh = #{xh,jdbcType=VARCHAR},
+      </if>
+      <if test="dwh != null">
+        dwh = #{dwh,jdbcType=VARCHAR},
+      </if>
+      <if test="xm != null">
+        xm = #{xm,jdbcType=VARCHAR},
+      </if>
+      <if test="ywxm != null">
+        ywxm = #{ywxm,jdbcType=VARCHAR},
+      </if>
+      <if test="xmpy != null">
+        xmpy = #{xmpy,jdbcType=VARCHAR},
+      </if>
+      <if test="cym != null">
+        cym = #{cym,jdbcType=VARCHAR},
+      </if>
+      <if test="xb != null">
+        xb = #{xb,jdbcType=CHAR},
+      </if>
+      <if test="csrq != null">
+        csrq = #{csrq,jdbcType=DATE},
+      </if>
+      <if test="csd != null">
+        csd = #{csd,jdbcType=VARCHAR},
+      </if>
+      <if test="jg != null">
+        jg = #{jg,jdbcType=VARCHAR},
+      </if>
+      <if test="mz != null">
+        mz = #{mz,jdbcType=VARCHAR},
+      </if>
+      <if test="gj != null">
+        gj = #{gj,jdbcType=VARCHAR},
+      </if>
+      <if test="sfzjlx != null">
+        sfzjlx = #{sfzjlx,jdbcType=VARCHAR},
+      </if>
+      <if test="sfzjh != null">
+        sfzjh = #{sfzjh,jdbcType=VARCHAR},
+      </if>
+      <if test="hyzk != null">
+        hyzk = #{hyzk,jdbcType=CHAR},
+      </if>
+      <if test="zzmm != null">
+        zzmm = #{zzmm,jdbcType=VARCHAR},
+      </if>
+      <if test="jkzk != null">
+        jkzk = #{jkzk,jdbcType=VARCHAR},
+      </if>
+      <if test="xyzj != null">
+        xyzj = #{xyzj,jdbcType=VARCHAR},
+      </if>
+      <if test="xx != null">
+        xx = #{xx,jdbcType=CHAR},
+      </if>
+      <if test="zjyxq != null">
+        zjyxq = #{zjyxq,jdbcType=DATE},
+      </if>
+      <if test="ssbm != null">
+        ssbm = #{ssbm,jdbcType=VARCHAR},
+      </if>
+      <if test="ssbj != null">
+        ssbj = #{ssbj,jdbcType=VARCHAR},
+      </if>
+      <if test="zp != null">
+        zp = #{zp,jdbcType=BINARY},
+      </if>
+    </set>
+    where jnm = #{jnm,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.jkh.j2eedemo.entity.Gxxs">
+    update gxxs
+    set xh = #{xh,jdbcType=VARCHAR},
+      dwh = #{dwh,jdbcType=VARCHAR},
+      xm = #{xm,jdbcType=VARCHAR},
+      ywxm = #{ywxm,jdbcType=VARCHAR},
+      xmpy = #{xmpy,jdbcType=VARCHAR},
+      cym = #{cym,jdbcType=VARCHAR},
+      xb = #{xb,jdbcType=CHAR},
+      csrq = #{csrq,jdbcType=DATE},
+      csd = #{csd,jdbcType=VARCHAR},
+      jg = #{jg,jdbcType=VARCHAR},
+      mz = #{mz,jdbcType=VARCHAR},
+      gj = #{gj,jdbcType=VARCHAR},
+      sfzjlx = #{sfzjlx,jdbcType=VARCHAR},
+      sfzjh = #{sfzjh,jdbcType=VARCHAR},
+      hyzk = #{hyzk,jdbcType=CHAR},
+      zzmm = #{zzmm,jdbcType=VARCHAR},
+      jkzk = #{jkzk,jdbcType=VARCHAR},
+      xyzj = #{xyzj,jdbcType=VARCHAR},
+      xx = #{xx,jdbcType=CHAR},
+      zjyxq = #{zjyxq,jdbcType=DATE},
+      ssbm = #{ssbm,jdbcType=VARCHAR},
+      ssbj = #{ssbj,jdbcType=VARCHAR},
+      zp = #{zp,jdbcType=BINARY}
+    where jnm = #{jnm,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jkh.j2eedemo.entity.Gxxs">
+    update gxxs
+    set xh = #{xh,jdbcType=VARCHAR},
+      dwh = #{dwh,jdbcType=VARCHAR},
+      xm = #{xm,jdbcType=VARCHAR},
+      ywxm = #{ywxm,jdbcType=VARCHAR},
+      xmpy = #{xmpy,jdbcType=VARCHAR},
+      cym = #{cym,jdbcType=VARCHAR},
+      xb = #{xb,jdbcType=CHAR},
+      csrq = #{csrq,jdbcType=DATE},
+      csd = #{csd,jdbcType=VARCHAR},
+      jg = #{jg,jdbcType=VARCHAR},
+      mz = #{mz,jdbcType=VARCHAR},
+      gj = #{gj,jdbcType=VARCHAR},
+      sfzjlx = #{sfzjlx,jdbcType=VARCHAR},
+      sfzjh = #{sfzjh,jdbcType=VARCHAR},
+      hyzk = #{hyzk,jdbcType=CHAR},
+      zzmm = #{zzmm,jdbcType=VARCHAR},
+      jkzk = #{jkzk,jdbcType=VARCHAR},
+      xyzj = #{xyzj,jdbcType=VARCHAR},
+      xx = #{xx,jdbcType=CHAR},
+      zjyxq = #{zjyxq,jdbcType=DATE},
+      ssbm = #{ssbm,jdbcType=VARCHAR},
+      ssbj = #{ssbj,jdbcType=VARCHAR}
+    where jnm = #{jnm,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.jkh.j2eedemo.entity.Gxxs">
+    <id column="jnm" jdbcType="VARCHAR" property="jnm" />
+    <result column="xh" jdbcType="VARCHAR" property="xh" />
+    <result column="dwh" jdbcType="VARCHAR" property="dwh" />
+    <result column="xm" jdbcType="VARCHAR" property="xm" />
+    <result column="ywxm" jdbcType="VARCHAR" property="ywxm" />
+    <result column="xmpy" jdbcType="VARCHAR" property="xmpy" />
+    <result column="cym" jdbcType="VARCHAR" property="cym" />
+    <result column="xb" jdbcType="CHAR" property="xb" />
+    <result column="csrq" jdbcType="DATE" property="csrq" />
+    <result column="csd" jdbcType="VARCHAR" property="csd" />
+    <result column="jg" jdbcType="VARCHAR" property="jg" />
+    <result column="mz" jdbcType="VARCHAR" property="mz" />
+    <result column="gj" jdbcType="VARCHAR" property="gj" />
+    <result column="sfzjlx" jdbcType="VARCHAR" property="sfzjlx" />
+    <result column="sfzjh" jdbcType="VARCHAR" property="sfzjh" />
+    <result column="hyzk" jdbcType="CHAR" property="hyzk" />
+    <result column="zzmm" jdbcType="VARCHAR" property="zzmm" />
+    <result column="jkzk" jdbcType="VARCHAR" property="jkzk" />
+    <result column="xyzj" jdbcType="VARCHAR" property="xyzj" />
+    <result column="xx" jdbcType="CHAR" property="xx" />
+    <result column="zjyxq" jdbcType="DATE" property="zjyxq" />
+    <result column="ssbm" jdbcType="VARCHAR" property="ssbm" />
+    <result column="ssbj" jdbcType="VARCHAR" property="ssbj" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.jkh.j2eedemo.entity.Gxxs">
+    <result column="zp" jdbcType="BINARY" property="zp" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    jnm, xh, dwh, xm, ywxm, xmpy, cym, xb, csrq, csd, jg, mz, gj, sfzjlx, sfzjh, hyzk, 
+    zzmm, jkzk, xyzj, xx, zjyxq, ssbm, ssbj
+  </sql>
+  <sql id="Blob_Column_List">
+    zp
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.jkh.j2eedemo.util.GxxsExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from gxxs
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.jkh.j2eedemo.util.GxxsExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from gxxs
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from gxxs
+    where jnm = #{jnm,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from gxxs
+    where jnm = #{jnm,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jkh.j2eedemo.util.GxxsExample">
+    delete from gxxs
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jkh.j2eedemo.entity.Gxxs">
+    insert into gxxs (jnm, xh, dwh, 
+      xm, ywxm, xmpy, cym, 
+      xb, csrq, csd, jg, 
+      mz, gj, sfzjlx, sfzjh, 
+      hyzk, zzmm, jkzk, xyzj, 
+      xx, zjyxq, ssbm, ssbj, 
+      zp)
+    values (#{jnm,jdbcType=VARCHAR}, #{xh,jdbcType=VARCHAR}, #{dwh,jdbcType=VARCHAR}, 
+      #{xm,jdbcType=VARCHAR}, #{ywxm,jdbcType=VARCHAR}, #{xmpy,jdbcType=VARCHAR}, #{cym,jdbcType=VARCHAR}, 
+      #{xb,jdbcType=CHAR}, #{csrq,jdbcType=DATE}, #{csd,jdbcType=VARCHAR}, #{jg,jdbcType=VARCHAR}, 
+      #{mz,jdbcType=VARCHAR}, #{gj,jdbcType=VARCHAR}, #{sfzjlx,jdbcType=VARCHAR}, #{sfzjh,jdbcType=VARCHAR}, 
+      #{hyzk,jdbcType=CHAR}, #{zzmm,jdbcType=VARCHAR}, #{jkzk,jdbcType=VARCHAR}, #{xyzj,jdbcType=VARCHAR}, 
+      #{xx,jdbcType=CHAR}, #{zjyxq,jdbcType=DATE}, #{ssbm,jdbcType=VARCHAR}, #{ssbj,jdbcType=VARCHAR}, 
+      #{zp,jdbcType=BINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jkh.j2eedemo.entity.Gxxs">
+    insert into gxxs
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="jnm != null">
+        jnm,
+      </if>
+      <if test="xh != null">
+        xh,
+      </if>
+      <if test="dwh != null">
+        dwh,
+      </if>
+      <if test="xm != null">
+        xm,
+      </if>
+      <if test="ywxm != null">
+        ywxm,
+      </if>
+      <if test="xmpy != null">
+        xmpy,
+      </if>
+      <if test="cym != null">
+        cym,
+      </if>
+      <if test="xb != null">
+        xb,
+      </if>
+      <if test="csrq != null">
+        csrq,
+      </if>
+      <if test="csd != null">
+        csd,
+      </if>
+      <if test="jg != null">
+        jg,
+      </if>
+      <if test="mz != null">
+        mz,
+      </if>
+      <if test="gj != null">
+        gj,
+      </if>
+      <if test="sfzjlx != null">
+        sfzjlx,
+      </if>
+      <if test="sfzjh != null">
+        sfzjh,
+      </if>
+      <if test="hyzk != null">
+        hyzk,
+      </if>
+      <if test="zzmm != null">
+        zzmm,
+      </if>
+      <if test="jkzk != null">
+        jkzk,
+      </if>
+      <if test="xyzj != null">
+        xyzj,
+      </if>
+      <if test="xx != null">
+        xx,
+      </if>
+      <if test="zjyxq != null">
+        zjyxq,
+      </if>
+      <if test="ssbm != null">
+        ssbm,
+      </if>
+      <if test="ssbj != null">
+        ssbj,
+      </if>
+      <if test="zp != null">
+        zp,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="jnm != null">
+        #{jnm,jdbcType=VARCHAR},
+      </if>
+      <if test="xh != null">
+        #{xh,jdbcType=VARCHAR},
+      </if>
+      <if test="dwh != null">
+        #{dwh,jdbcType=VARCHAR},
+      </if>
+      <if test="xm != null">
+        #{xm,jdbcType=VARCHAR},
+      </if>
+      <if test="ywxm != null">
+        #{ywxm,jdbcType=VARCHAR},
+      </if>
+      <if test="xmpy != null">
+        #{xmpy,jdbcType=VARCHAR},
+      </if>
+      <if test="cym != null">
+        #{cym,jdbcType=VARCHAR},
+      </if>
+      <if test="xb != null">
+        #{xb,jdbcType=CHAR},
+      </if>
+      <if test="csrq != null">
+        #{csrq,jdbcType=DATE},
+      </if>
+      <if test="csd != null">
+        #{csd,jdbcType=VARCHAR},
+      </if>
+      <if test="jg != null">
+        #{jg,jdbcType=VARCHAR},
+      </if>
+      <if test="mz != null">
+        #{mz,jdbcType=VARCHAR},
+      </if>
+      <if test="gj != null">
+        #{gj,jdbcType=VARCHAR},
+      </if>
+      <if test="sfzjlx != null">
+        #{sfzjlx,jdbcType=VARCHAR},
+      </if>
+      <if test="sfzjh != null">
+        #{sfzjh,jdbcType=VARCHAR},
+      </if>
+      <if test="hyzk != null">
+        #{hyzk,jdbcType=CHAR},
+      </if>
+      <if test="zzmm != null">
+        #{zzmm,jdbcType=VARCHAR},
+      </if>
+      <if test="jkzk != null">
+        #{jkzk,jdbcType=VARCHAR},
+      </if>
+      <if test="xyzj != null">
+        #{xyzj,jdbcType=VARCHAR},
+      </if>
+      <if test="xx != null">
+        #{xx,jdbcType=CHAR},
+      </if>
+      <if test="zjyxq != null">
+        #{zjyxq,jdbcType=DATE},
+      </if>
+      <if test="ssbm != null">
+        #{ssbm,jdbcType=VARCHAR},
+      </if>
+      <if test="ssbj != null">
+        #{ssbj,jdbcType=VARCHAR},
+      </if>
+      <if test="zp != null">
+        #{zp,jdbcType=BINARY},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jkh.j2eedemo.util.GxxsExample" resultType="java.lang.Long">
+    select count(*) from gxxs
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update gxxs
+    <set>
+      <if test="record.jnm != null">
+        jnm = #{record.jnm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xh != null">
+        xh = #{record.xh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dwh != null">
+        dwh = #{record.dwh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xm != null">
+        xm = #{record.xm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ywxm != null">
+        ywxm = #{record.ywxm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xmpy != null">
+        xmpy = #{record.xmpy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cym != null">
+        cym = #{record.cym,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xb != null">
+        xb = #{record.xb,jdbcType=CHAR},
+      </if>
+      <if test="record.csrq != null">
+        csrq = #{record.csrq,jdbcType=DATE},
+      </if>
+      <if test="record.csd != null">
+        csd = #{record.csd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jg != null">
+        jg = #{record.jg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mz != null">
+        mz = #{record.mz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gj != null">
+        gj = #{record.gj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sfzjlx != null">
+        sfzjlx = #{record.sfzjlx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sfzjh != null">
+        sfzjh = #{record.sfzjh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hyzk != null">
+        hyzk = #{record.hyzk,jdbcType=CHAR},
+      </if>
+      <if test="record.zzmm != null">
+        zzmm = #{record.zzmm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jkzk != null">
+        jkzk = #{record.jkzk,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xyzj != null">
+        xyzj = #{record.xyzj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xx != null">
+        xx = #{record.xx,jdbcType=CHAR},
+      </if>
+      <if test="record.zjyxq != null">
+        zjyxq = #{record.zjyxq,jdbcType=DATE},
+      </if>
+      <if test="record.ssbm != null">
+        ssbm = #{record.ssbm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ssbj != null">
+        ssbj = #{record.ssbj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zp != null">
+        zp = #{record.zp,jdbcType=BINARY},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update gxxs
+    set jnm = #{record.jnm,jdbcType=VARCHAR},
+      xh = #{record.xh,jdbcType=VARCHAR},
+      dwh = #{record.dwh,jdbcType=VARCHAR},
+      xm = #{record.xm,jdbcType=VARCHAR},
+      ywxm = #{record.ywxm,jdbcType=VARCHAR},
+      xmpy = #{record.xmpy,jdbcType=VARCHAR},
+      cym = #{record.cym,jdbcType=VARCHAR},
+      xb = #{record.xb,jdbcType=CHAR},
+      csrq = #{record.csrq,jdbcType=DATE},
+      csd = #{record.csd,jdbcType=VARCHAR},
+      jg = #{record.jg,jdbcType=VARCHAR},
+      mz = #{record.mz,jdbcType=VARCHAR},
+      gj = #{record.gj,jdbcType=VARCHAR},
+      sfzjlx = #{record.sfzjlx,jdbcType=VARCHAR},
+      sfzjh = #{record.sfzjh,jdbcType=VARCHAR},
+      hyzk = #{record.hyzk,jdbcType=CHAR},
+      zzmm = #{record.zzmm,jdbcType=VARCHAR},
+      jkzk = #{record.jkzk,jdbcType=VARCHAR},
+      xyzj = #{record.xyzj,jdbcType=VARCHAR},
+      xx = #{record.xx,jdbcType=CHAR},
+      zjyxq = #{record.zjyxq,jdbcType=DATE},
+      ssbm = #{record.ssbm,jdbcType=VARCHAR},
+      ssbj = #{record.ssbj,jdbcType=VARCHAR},
+      zp = #{record.zp,jdbcType=BINARY}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update gxxs
+    set jnm = #{record.jnm,jdbcType=VARCHAR},
+      xh = #{record.xh,jdbcType=VARCHAR},
+      dwh = #{record.dwh,jdbcType=VARCHAR},
+      xm = #{record.xm,jdbcType=VARCHAR},
+      ywxm = #{record.ywxm,jdbcType=VARCHAR},
+      xmpy = #{record.xmpy,jdbcType=VARCHAR},
+      cym = #{record.cym,jdbcType=VARCHAR},
+      xb = #{record.xb,jdbcType=CHAR},
+      csrq = #{record.csrq,jdbcType=DATE},
+      csd = #{record.csd,jdbcType=VARCHAR},
+      jg = #{record.jg,jdbcType=VARCHAR},
+      mz = #{record.mz,jdbcType=VARCHAR},
+      gj = #{record.gj,jdbcType=VARCHAR},
+      sfzjlx = #{record.sfzjlx,jdbcType=VARCHAR},
+      sfzjh = #{record.sfzjh,jdbcType=VARCHAR},
+      hyzk = #{record.hyzk,jdbcType=CHAR},
+      zzmm = #{record.zzmm,jdbcType=VARCHAR},
+      jkzk = #{record.jkzk,jdbcType=VARCHAR},
+      xyzj = #{record.xyzj,jdbcType=VARCHAR},
+      xx = #{record.xx,jdbcType=CHAR},
+      zjyxq = #{record.zjyxq,jdbcType=DATE},
+      ssbm = #{record.ssbm,jdbcType=VARCHAR},
+      ssbj = #{record.ssbj,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jkh.j2eedemo.entity.Gxxs">
+    update gxxs
+    <set>
+      <if test="xh != null">
+        xh = #{xh,jdbcType=VARCHAR},
+      </if>
+      <if test="dwh != null">
+        dwh = #{dwh,jdbcType=VARCHAR},
+      </if>
+      <if test="xm != null">
+        xm = #{xm,jdbcType=VARCHAR},
+      </if>
+      <if test="ywxm != null">
+        ywxm = #{ywxm,jdbcType=VARCHAR},
+      </if>
+      <if test="xmpy != null">
+        xmpy = #{xmpy,jdbcType=VARCHAR},
+      </if>
+      <if test="cym != null">
+        cym = #{cym,jdbcType=VARCHAR},
+      </if>
+      <if test="xb != null">
+        xb = #{xb,jdbcType=CHAR},
+      </if>
+      <if test="csrq != null">
+        csrq = #{csrq,jdbcType=DATE},
+      </if>
+      <if test="csd != null">
+        csd = #{csd,jdbcType=VARCHAR},
+      </if>
+      <if test="jg != null">
+        jg = #{jg,jdbcType=VARCHAR},
+      </if>
+      <if test="mz != null">
+        mz = #{mz,jdbcType=VARCHAR},
+      </if>
+      <if test="gj != null">
+        gj = #{gj,jdbcType=VARCHAR},
+      </if>
+      <if test="sfzjlx != null">
+        sfzjlx = #{sfzjlx,jdbcType=VARCHAR},
+      </if>
+      <if test="sfzjh != null">
+        sfzjh = #{sfzjh,jdbcType=VARCHAR},
+      </if>
+      <if test="hyzk != null">
+        hyzk = #{hyzk,jdbcType=CHAR},
+      </if>
+      <if test="zzmm != null">
+        zzmm = #{zzmm,jdbcType=VARCHAR},
+      </if>
+      <if test="jkzk != null">
+        jkzk = #{jkzk,jdbcType=VARCHAR},
+      </if>
+      <if test="xyzj != null">
+        xyzj = #{xyzj,jdbcType=VARCHAR},
+      </if>
+      <if test="xx != null">
+        xx = #{xx,jdbcType=CHAR},
+      </if>
+      <if test="zjyxq != null">
+        zjyxq = #{zjyxq,jdbcType=DATE},
+      </if>
+      <if test="ssbm != null">
+        ssbm = #{ssbm,jdbcType=VARCHAR},
+      </if>
+      <if test="ssbj != null">
+        ssbj = #{ssbj,jdbcType=VARCHAR},
+      </if>
+      <if test="zp != null">
+        zp = #{zp,jdbcType=BINARY},
+      </if>
+    </set>
+    where jnm = #{jnm,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.jkh.j2eedemo.entity.Gxxs">
+    update gxxs
+    set xh = #{xh,jdbcType=VARCHAR},
+      dwh = #{dwh,jdbcType=VARCHAR},
+      xm = #{xm,jdbcType=VARCHAR},
+      ywxm = #{ywxm,jdbcType=VARCHAR},
+      xmpy = #{xmpy,jdbcType=VARCHAR},
+      cym = #{cym,jdbcType=VARCHAR},
+      xb = #{xb,jdbcType=CHAR},
+      csrq = #{csrq,jdbcType=DATE},
+      csd = #{csd,jdbcType=VARCHAR},
+      jg = #{jg,jdbcType=VARCHAR},
+      mz = #{mz,jdbcType=VARCHAR},
+      gj = #{gj,jdbcType=VARCHAR},
+      sfzjlx = #{sfzjlx,jdbcType=VARCHAR},
+      sfzjh = #{sfzjh,jdbcType=VARCHAR},
+      hyzk = #{hyzk,jdbcType=CHAR},
+      zzmm = #{zzmm,jdbcType=VARCHAR},
+      jkzk = #{jkzk,jdbcType=VARCHAR},
+      xyzj = #{xyzj,jdbcType=VARCHAR},
+      xx = #{xx,jdbcType=CHAR},
+      zjyxq = #{zjyxq,jdbcType=DATE},
+      ssbm = #{ssbm,jdbcType=VARCHAR},
+      ssbj = #{ssbj,jdbcType=VARCHAR},
+      zp = #{zp,jdbcType=BINARY}
+    where jnm = #{jnm,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jkh.j2eedemo.entity.Gxxs">
+    update gxxs
+    set xh = #{xh,jdbcType=VARCHAR},
+      dwh = #{dwh,jdbcType=VARCHAR},
+      xm = #{xm,jdbcType=VARCHAR},
+      ywxm = #{ywxm,jdbcType=VARCHAR},
+      xmpy = #{xmpy,jdbcType=VARCHAR},
+      cym = #{cym,jdbcType=VARCHAR},
+      xb = #{xb,jdbcType=CHAR},
+      csrq = #{csrq,jdbcType=DATE},
+      csd = #{csd,jdbcType=VARCHAR},
+      jg = #{jg,jdbcType=VARCHAR},
+      mz = #{mz,jdbcType=VARCHAR},
+      gj = #{gj,jdbcType=VARCHAR},
+      sfzjlx = #{sfzjlx,jdbcType=VARCHAR},
+      sfzjh = #{sfzjh,jdbcType=VARCHAR},
+      hyzk = #{hyzk,jdbcType=CHAR},
+      zzmm = #{zzmm,jdbcType=VARCHAR},
+      jkzk = #{jkzk,jdbcType=VARCHAR},
+      xyzj = #{xyzj,jdbcType=VARCHAR},
+      xx = #{xx,jdbcType=CHAR},
+      zjyxq = #{zjyxq,jdbcType=DATE},
+      ssbm = #{ssbm,jdbcType=VARCHAR},
+      ssbj = #{ssbj,jdbcType=VARCHAR}
+    where jnm = #{jnm,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -336,7 +336,7 @@ public abstract class AbsSuperService implements AbsSuperServiceInter {
         back = checkDAO();
         if ((Boolean) back.getObj() == false) return back;
         cons.put("rowscount",rowsCount);
-        cons.put("start", (startPage-1)*rowsCount);
+        cons.put("startpage", (startPage-1)*rowsCount);
         List<AbsSuperObject> res= getDao().findByPage(cons);
         if (res.size() > 0) {
           int length= getDao().getRowsCount(cons);

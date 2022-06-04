@@ -133,28 +133,29 @@
     <sql id="findCondition">
         <where>
             <choose>
-                <when test="name!=null and name!=''">
-                    and name like '%${name}%'
+                <when test="xm!=null and xm!=''">
+                    and xm like '%${xm}%'
                 </when>
-                <when test="id!=null and id!=''">
-                    and id like '%${id}%'
+                <when test="xh!=null and xh!=''">
+                    and xh like '%${xh}%'
                 </when>
-                <when test="myClass!='' and myClass!=null">
-                    and myClass=#{myClass}
+                <when test="ssbj!='' and ssbj!=null">
+                    and ssbj=#{ssbj}
                 </when>
                 <otherwise>
-                    and id is not null
+                    and xh is not null
                 </otherwise>
             </choose>
         </where>
     </sql>
+
     <select id="getRowsCount" parameterType="java.util.Map" resultType="java.lang.Integer">
-        select count(*) total from student
+        select count(*) total from gxxs
         <include refid="findCondition"></include>
     </select>
-    <select id="findByPage" parameterType="java.util.Map" resultType="com.jkh.j2eedemo.entity.Student">
-        select * from student
+    <select id="findByPage" parameterType="java.util.Map" resultType="java.util.Map">
+        select * from gxxs
         <include refid="findCondition"></include>
-        limit #{start},#{rowscount}
+        limit #{startpage},#{rowscount}
     </select>
 </mapper>
