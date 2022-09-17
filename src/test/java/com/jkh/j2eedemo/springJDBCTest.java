@@ -1,14 +1,12 @@
 package com.jkh.j2eedemo;
 
-import com.jkh.j2eedemo.dao.GxxsMapper;
+import com.jkh.j2eedemo.dao.GxxsTest;
 import com.jkh.j2eedemo.entity.Gxxs;
 import com.jkh.j2eedemo.util.dateUtil;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.jdbc.core.JdbcTemplate;
 
-import java.util.Date;
 import java.util.Random;
 
 @SpringBootTest
@@ -39,7 +37,7 @@ public class springJDBCTest {
 //        System.out.println("删除了"+update+"条数据");
 //    }
    @Autowired
-    private GxxsMapper gxxsMapperdao;
+    private GxxsTest gxxsMapperdao;
    @Test
     public void dobatchsaveteststu(){
        for (int i = 0; i <100000 ; i++) {

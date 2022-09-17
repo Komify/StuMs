@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jkh.j2eedemo.dao.IGxbm">
+
+    <sql id="add">
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            jnm,
+            <if test="bh!=null">
+                bh,
+            </if>
+            <if test="mc!=null">
+                mc,
+            </if>
+            <if test="fzr!=null">
+                fzr,
+            </if>
+            <if test="lxdh!=null">
+                lxdh,
+            </if>
+            <if test="xz!=null">
+                xz,
+            </if>
+            <if test="gxdm!=null">
+                gxdm,
+            </if>
+        </trim>
+    </sql>
+    <sql id="addResult">
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+        uuid(),
+            <if test="bh!=null">
+                #{bh},           </if>
+            <if test="mc!=null">
+                #{mc},           </if>
+            <if test="fzr!=null">
+                #{fzr},            </if>
+            <if test="lxdh!=null">
+                #{lxdh},
+            </if>
+            <if test="xz!=null">
+                #{xz},
+            </if>
+            <if test="gxdm!=null">
+                #{gxdm},
+            </if>
+        </trim>
+    </sql>
+
+    <!--    根据id查询学生-->
+    <select id="findById" parameterType="java.lang.String" resultType="com.jkh.j2eedemo.entity.Gxbm">
+        select jnm,bh,mc,fzr,lxdh,xz,gxdm from gxbm where jnm=#{jnm}
+   </select>
+
+    <insert id="add" parameterType="com.jkh.j2eedemo.entity.Gxbm">
+        insert into gxbm
+        <include refid="add">
+        </include>values
+        <include refid="addResult"></include>
+    </insert>
+    <update id="edit" parameterType="com.jkh.j2eedemo.entity.Gxbm">
+        update gxbm
+        <set>
+            <if test="bh!=null">
+              bh= #{bh},
+            </if>
+            <if test="mc!=null">
+              mc=#{mc},
+              </if>
+            <if test="fzr!=null">
+               fzr=#{fzr},
+               </if>
+            <if test="lxdh!=null">
+               lxdh=#{lxdh},
+            </if>
+            <if test="xz!=null">
+               xz=#{xz},
+            </if>
+        </set>
+        where jnm=#{jnm}
+    </update>
+    <!--    测试删除学生-->
+    <delete id="del" parameterType="com.jkh.j2eedemo.entity.Gxbm">
+    delete from gxbm where jnm =#{id}
+   </delete>
+
+    <sql id="findCondition">
+        <where>
+            <choose>
+                <when test="bh!=null and bh!=''">
+                    and bh like '%${bh}%'
+                </when>
+                <when test="mc!=null and mc!=''">
+                    and mc like '%${mc}%'
+                </when>
+                <when test="fzr!='' and fzr!=null">
+                    and fzr=#{fzr}
+                </when>
+                <otherwise>
+                    and jnm is not null
+                </otherwise>
+            </choose>
+        </where>
+    </sql>
+
+    <select id="getRowsCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+        select count(*) total from gxbm
+        <include refid="findCondition"></include>
+    </select>
+    <select id="findByPage" parameterType="java.util.Map" resultType="java.util.Map">
+        select * from gxbm
+        <include refid="findCondition"></include>
+        limit #{startpage},#{rowscount}
+    </select>
+    <delete id="batchDel" parameterType="java.util.Map">
+    delete from gxbm where jnm in (#{ids})
+   </delete>
+<!--    查询所有的高校部门-->
+    <select id="findall" resultType="com.jkh.j2eedemo.entity.Gxbm">
+        select * from gxbm
+    </select>
+</mapper>

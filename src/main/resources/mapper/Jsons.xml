@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jkh.j2eedemo.dao.IJsons">
+
+
+
+    <!--  根据jsonname查询-->
+    <select id="findbyname" parameterType="java.lang.String"
+            resultType="com.jkh.j2eedemo.entity.Jsons">
+    select  *
+    from jsons
+    where jsonname = #{jsonname,jdbcType=VARCHAR}
+  </select>
+    <!--  1-->
+
+
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.jkh.j2eedemo.entity.Jsons">
+        update jsons
+        <set>
+            <if test="jsonvalue != null">
+                jsonvalue = #{jsonvalue,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        where jsonname = #{jsonname,jdbcType=VARCHAR}
+    </update>
+
+</mapper>

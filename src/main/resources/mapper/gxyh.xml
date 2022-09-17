@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jkh.j2eedemo.dao.IGxyh">
+
+  <select id="login" parameterType="com.jkh.j2eedemo.entity.Gxyh" resultType="com.jkh.j2eedemo.entity.Gxyh">
+    select *
+    from gxyh
+    where zh = #{zh,jdbcType=VARCHAR} and zt ="正常"
+  </select>
+
+
+  <insert id="registdd" parameterType="com.jkh.j2eedemo.entity.Gxyh">
+    insert into gxyh (zh, nc, mm, zcsj, 
+      zt)
+    values (#{zh,jdbcType=VARCHAR}, #{nc,jdbcType=VARCHAR}, #{mm,jdbcType=VARCHAR}, #{zcsj,jdbcType=TIMESTAMP}, 
+      #{zt,jdbcType=CHAR})
+  </insert>
+  <insert id="regist" parameterType="com.jkh.j2eedemo.entity.Gxyh">
+    insert into gxyh
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="zh != null">
+        zh,
+      </if>
+      <if test="nc != null">
+        nc,
+      </if>
+      <if test="mm != null">
+        mm,
+      </if>
+      <if test="zcsj != null">
+        zcsj,
+      </if>
+      <if test="zt != null">
+        zt,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="zh != null">
+        #{zh,jdbcType=VARCHAR},
+      </if>
+      <if test="nc != null">
+        #{nc,jdbcType=VARCHAR},
+      </if>
+      <if test="mm != null">
+        #{mm,jdbcType=VARCHAR},
+      </if>
+      <if test="zcsj != null">
+        #{zcsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="zt != null">
+        #{zt,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="update" parameterType="com.jkh.j2eedemo.entity.Gxyh">
+    update gxyh
+    <set>
+      <if test="nc != null">
+        nc = #{nc,jdbcType=VARCHAR},
+      </if>
+      <if test="mm != null">
+        mm = #{mm,jdbcType=VARCHAR},
+      </if>
+      <if test="zcsj != null">
+        zcsj = #{zcsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="zt != null">
+        zt = #{zt,jdbcType=CHAR},
+      </if>
+    </set>
+    where zh = #{zh,jdbcType=VARCHAR}
+  </update>
+<!--查找用户-->
+  <select id="finduser" parameterType="java.lang.String" resultType="com.jkh.j2eedemo.entity.Gxyh">
+    select  * from  gxyh where  zh =#{zh}
+  </select>
+</mapper>

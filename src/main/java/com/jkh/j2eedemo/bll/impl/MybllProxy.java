@@ -3,7 +3,7 @@ package com.jkh.j2eedemo.bll.impl;
 
 import com.jkh.j2eedemo.bll.inter.AbsSuperServiceInter;
 import com.jkh.j2eedemo.bll.inter.iStudentInter;
-import com.jkh.j2eedemo.dao.IDoData;
+
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;

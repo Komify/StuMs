@@ -1,6 +1,6 @@
 package com.jkh.j2eedemo.bll.impl.Log;
 
-import com.jkh.j2eedemo.bll.inter.Ilogbllinter;
+import com.jkh.j2eedemo.bll.inter.IlogbllInter;
 import com.jkh.j2eedemo.dao.Ilog;
 import com.jkh.j2eedemo.entity.KesunReturn;
 import com.jkh.j2eedemo.entity.Log;
@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class DoLogServiceimpl implements Ilogbllinter {
+public class DoLogServiceimpl implements IlogbllInter {
     @Autowired
     private Ilog ilog;
 

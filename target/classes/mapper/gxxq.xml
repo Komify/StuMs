@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jkh.j2eedemo.dao.IGxxq">
+
+    <sql id="add">
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            jnm,
+            <if test="bh!=null">
+                bh,
+            </if>
+            <if test="mc!=null">
+                mc,
+            </if>
+            <if test="qsxn!=null">
+                qsxn,
+            </if>
+            <if test="jsxn!=null">
+                jsxn,
+            </if>
+            <if test="ssxx!=null">
+                ssxx,
+            </if>
+        </trim>
+    </sql>
+    <sql id="addResult">
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            uuid(),
+            <if test="bh!=null">
+                #{bh},
+            </if>
+            <if test="mc!=null">
+                #{mc},
+            </if>
+            <if test="qsxn!=null">
+                #{qsxn},
+            </if>
+            <if test="jsxn!=null">
+                #{jsxn},
+            </if>
+            <if test="ssxx!=null">
+                #{ssxx},
+            </if>
+        </trim>
+    </sql>
+
+    <!--    根据id-->
+    <select id="findById" parameterType="java.lang.String" resultType="com.jkh.j2eedemo.entity.Gxxq">
+        select * from gxxq where jnm=#{jnm}
+   </select>
+
+    <insert id="add" parameterType="com.jkh.j2eedemo.entity.Gxxq">
+        insert into gxxq
+        <include refid="add">
+        </include>values
+        <include refid="addResult"></include>
+    </insert>
+    <update id="edit" parameterType="com.jkh.j2eedemo.entity.Gxxq">
+        update gxxq
+        <set>
+            <if test="bh!=null">
+                bh= #{bh},
+            </if>
+            <if test="mc!=null">
+                mc=#{mc},
+            </if>
+            <if test="qsxn!=null">
+                qsxn=#{qsxn},
+            </if>
+            <if test="jsxn!=null">
+                jsxn=#{jsxn},
+            </if>
+            <if test="ssxx!=null">
+                ssxx=#{ssxx},
+            </if>
+        </set>
+        where jnm=#{jnm}
+    </update>
+    <!--    测试删除-->
+    <delete id="del" parameterType="com.jkh.j2eedemo.entity.Gxxq">
+    delete from gxxq where jnm =#{id}
+   </delete>
+
+    <sql id="findCondition">
+        <where>
+            <choose>
+                <when test="bh!=null and bh!=''">
+                    and bh like '%${bh}%'
+                </when>
+                <when test="mc!=null and mc!=''">
+                    and mc like '%${mc}%'
+                </when>
+                <when test="ssxx!='' and ssxx!=null">
+                    and ssxx=#{ssxx}
+                </when>
+                <otherwise>
+                    and jnm is not null
+                </otherwise>
+            </choose>
+        </where>
+    </sql>
+
+    <select id="getRowsCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+        select count(*) total from gxxq
+        <include refid="findCondition"></include>
+    </select>
+    <select id="findByPage" parameterType="java.util.Map" resultType="java.util.Map">
+        select * from gxxq
+        <include refid="findCondition"></include>
+        limit #{startpage},#{rowscount}
+    </select>
+    <delete id="batchDel" parameterType="java.util.Map">
+    delete from gxxq where jnm in (#{ids})
+   </delete>
+</mapper>

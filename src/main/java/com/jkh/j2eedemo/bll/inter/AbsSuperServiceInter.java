@@ -14,23 +14,24 @@ public interface AbsSuperServiceInter {
 
     IDoData getDao();
 
-    KesunReturn findStuById();
+    KesunReturn findById();
 
-    KesunReturn addStu();
+    KesunReturn add();
 
-    KesunReturn editStu();
+    KesunReturn edit();
 
-    KesunReturn batchEditStu(Map<String, Object> cons);
+    KesunReturn batchEdit(Map<String, Object> cons);
 
-    KesunReturn findStus(Map<String, Object> cons);
+    KesunReturn finds(Map<String, Object> cons);
 
     KesunReturn delete();
 
-    KesunReturn batchSaveStu(List<AbsSuperObject> objs);
+    KesunReturn batchSave(List<AbsSuperObject> objs);
 
-    KesunReturn batchUpdat(List<AbsSuperObject> objs);
+    KesunReturn batchUpdate(List<AbsSuperObject> objs);
 
     KesunReturn getRowscount(Map<String, Object> cons);
 
     KesunReturn findByPage(Map<String, Object> cons, int startPage, int rowsCount);
+    KesunReturn batchDel(Map<String,Object> cons);
 }

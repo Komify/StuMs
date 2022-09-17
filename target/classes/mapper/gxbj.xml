@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jkh.j2eedemo.dao.IGxbj">
+
+
+    <sql id="add">
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            jnh,
+            <if test="bh!=null">
+                bh,
+            </if>
+            <if test="bjmc!=null">
+                bjmc,
+            </if>
+            <if test="sszy!=null">
+                sszy,
+            </if>
+            <if test="bzrxm!=null">
+                bzrxm,
+            </if>
+            <if test="bzxm!=null">
+                bzxm,
+            </if>
+        </trim>
+    </sql>
+    <sql id="addResult">
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            uuid(),
+            <if test="bh!=null">
+                #{bh},
+            </if>
+            <if test="bjmc!=null">
+                #{bjmc},
+            </if>
+            <if test="sszy!=null">
+                #{sszy},
+            </if>
+            <if test="bzrxm!=null">
+                #{bzrxm},
+            </if>
+            <if test="bzxm!=null">
+                #{bzxm},
+            </if>
+        </trim>
+    </sql>
+
+    <!--    根据id查询班级-->
+    <select id="findById" parameterType="java.lang.String" resultType="com.jkh.j2eedemo.entity.Gxbj">
+        select * from gxbj where jnh=#{jnh}
+   </select>
+
+
+<!--添加班级-->
+    <insert id="add" parameterType="com.jkh.j2eedemo.entity.Gxbj">
+        insert into gxbj
+        <include refid="add">
+        </include>values
+        <include refid="addResult"></include>
+    </insert>
+    <update id="edit" parameterType="com.jkh.j2eedemo.entity.Gxbj">
+        update gxbj
+        <set>
+            <if test="bh!=null">
+                bh=#{bh},
+            </if>
+            <if test="bjmc!=null">
+                bjmc=#{bjmc},
+            </if>
+            <if test="bzrxm!=null">
+                bzrxm=#{bzrxm},
+            </if>
+            <if test="sszy!=null">
+                sszy=#{sszy},
+            </if>
+        </set>
+        where jnh=#{jnh}
+    </update>
+
+    <!--    测试删除-->
+    <delete id="del" parameterType="com.jkh.j2eedemo.entity.Gxbj">
+    delete from gxbj where jnh =#{id}
+   </delete>
+
+    <sql id="findCondition">
+        <where>
+            <choose>
+                <when test="bh!=null and bh!=''">
+                    and bh like '%${bh}%'
+                </when>
+                <when test="bjmc!=null and bjmc!=''">
+                    and bjmc like '%${bjmc}%'
+                </when>
+                <when test="sszy!='' and sszy!=null">
+                    and sszy=#{sszy}
+                </when>
+                <otherwise>
+                    and jnh is not null
+                </otherwise>
+            </choose>
+        </where>
+    </sql>
+
+    <select id="getRowsCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+        select count(*) total from gxbj
+        <include refid="findCondition"></include>
+    </select>
+    <select id="findByPage" parameterType="java.util.Map" resultType="java.util.Map">
+        select * from gxbj
+        <include refid="findCondition"></include>
+        limit #{startpage},#{rowscount}
+    </select>
+    <delete id="batchDel" parameterType="java.util.Map">
+    delete from gxbj where jnh in (#{ids})
+   </delete>
+<!--    查询所有班级-->
+    <select id="findall" resultType="java.util.Map">
+        select distinct(bjmc) from gxbj;
+    </select>
+</mapper>

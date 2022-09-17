@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jkh.j2eedemo.dao.IGxjs">
+
+    <sql id="add">
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            jnm,
+
+            <if test="jsbh!=null">
+                jsbh,
+            </if>
+            <if test="jsmc!=null">
+                jsmc,
+            </if>
+            <if test="jslb!=null">
+                jslb,
+            </if>
+
+            <if test="jswz!=null">
+                jswz,
+            </if>
+            <if test="zws!=null">
+                zws,
+            </if>
+
+            <if test="ssbm!=null">
+                ssbm,
+            </if>
+
+        </trim>
+    </sql>
+    <sql id="addResult">
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            uuid(),
+            <if test="jsbh!=null">
+                #{jsbh},
+            </if>
+            <if test="jsmc!=null">
+                #{jsmc},
+            </if>
+            <if test="jslb!=null">
+                #{jslb},
+            </if>
+            <if test="jswz!=null">
+                #{jswz},
+            </if>
+            <if test="zws!=null">
+                #{zws},
+            </if>
+            <if test="ssbm!=null">
+                #{ssbm},
+            </if>
+
+        </trim>
+    </sql>
+
+    <!--    根据id查询学生-->
+    <select id="findById" parameterType="java.lang.String" resultType="com.jkh.j2eedemo.entity.Gxjs">
+        select jsbh,jsmc,jslb,jswz,zws,ssbm from gxjs where jnm=#{jnm}
+</select>
+
+
+    <insert id="add" parameterType="com.jkh.j2eedemo.entity.Gxjs">
+        insert into gxjs
+        <include refid="add">
+        </include>values
+        <include refid="addResult"></include>
+    </insert>
+    <update id="edit" parameterType="com.jkh.j2eedemo.entity.Gxjs">
+        update gxjs
+        <set>
+            <if test="jsbh!=null">
+                jsbh=#{jsbh},
+            </if>
+            <if test="jsmc!=null">
+                jsmc=#{jsmc},
+            </if>
+            <if test="jslb!=null">
+                jslb=#{jslb},
+            </if>
+            <if test="jswz!=null">
+                jswz=#{jswz},
+            </if>
+            <if test="zws!=null">
+                zws=#{zws},
+            </if>
+            <if test="ssbm!=null">
+                ssbm=#{ssbm},
+            </if>
+
+
+        </set>
+        where jnm=#{jnm}
+    </update>
+
+    <!--    测试删除学生-->
+    <delete id="del" parameterType="com.jkh.j2eedemo.entity.Gxjs">
+    delete from gxjs where jnm =#{id}
+   </delete>
+
+    <sql id="findCondition">
+        <where>
+            <choose>
+                <when test="jsbh!=null and jsbh!=''">
+                    and jsbh like '%${jsbh}%'
+                </when>
+                <when test="jsmc!=null and jsmc!=''">
+                    and jsmc like '%${jsmc}%'
+                </when>
+                <when test="jslb!=null and jslb!=''">
+                    and jslb like '%${jslb}%'
+                </when>
+                <when test="jswz!='' and jswz!=null">
+                    and jswz=#{jswz}
+                </when>
+                <when test="zws!='' and zws!=null">
+                    and zws=#{zws}
+                </when>
+                <when test="ssbm!='' and ssbm!=null">
+                    and ssbm=#{ssbm}
+                </when>
+
+                <otherwise>
+                    and jnm is not null
+                </otherwise>
+            </choose>
+        </where>
+    </sql>
+
+    <select id="getRowsCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+        select count(*) total from gxjs
+        <include refid="findCondition"></include>
+    </select>
+    <select id="findByPage" parameterType="java.util.Map" resultType="java.util.Map">
+        select * from gxjs
+        <include refid="findCondition"></include>
+        limit #{startpage},#{rowscount}
+    </select>
+    <delete id="batchDel" parameterType="java.util.Map">
+    delete from gxjs where jnm in (#{ids})
+   </delete>
+</mapper>

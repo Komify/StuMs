@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jkh.j2eedemo.dao.IGxjzg">
+    <resultMap id="gxjzgmaper" type="com.jkh.j2eedemo.entity.Gxjzg">
+        <id column="jnm" jdbcType="VARCHAR" property="jnm" />
+        <result column="gh" jdbcType="VARCHAR" property="gh" />
+        <result column="dwh" jdbcType="VARCHAR" property="dwh" />
+        <result column="xm" jdbcType="VARCHAR" property="xm" />
+        <result column="ywxm" jdbcType="VARCHAR" property="ywxm" />
+        <result column="xmpy" jdbcType="VARCHAR" property="xmpy" />
+        <result column="cym" jdbcType="VARCHAR" property="cym" />
+        <result column="xb" jdbcType="CHAR" property="xb" />
+        <result column="csrq" jdbcType="DATE" property="csrq" />
+        <result column="csd" jdbcType="VARCHAR" property="csd" />
+        <result column="jg" jdbcType="VARCHAR" property="jg" />
+        <result column="mz" jdbcType="VARCHAR" property="mz" />
+        <result column="gj" jdbcType="VARCHAR" property="gj" />
+        <result column="sfzjlx" jdbcType="VARCHAR" property="sfzjlx" />
+        <result column="sfzjh" jdbcType="VARCHAR" property="sfzjh" />
+        <result column="hyzk" jdbcType="CHAR" property="hyzk" />
+        <result column="zzmm" jdbcType="VARCHAR" property="zzmm" />
+        <result column="jkzk" jdbcType="VARCHAR" property="jkzk" />
+        <result column="xyzj" jdbcType="VARCHAR" property="xyzj" />
+        <result column="xx" jdbcType="CHAR" property="xx" />
+        <result column="zjyxq" jdbcType="DATE" property="zjyxq" />
+        <result column="ssbm" jdbcType="VARCHAR" property="ssbm" />
+    </resultMap>
+    <sql id="gxjzgcol">
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+             jnm,
+            <if test="gh!=null">
+            gh,
+            </if>
+            <if test="dwh!=null">
+                dwh,
+            </if>
+            <if test="xm!=null">
+                xm,
+            </if>
+            <if test="xb!=null">
+                xb,
+            </if>
+            <if test="ssbm!=null">
+               ssbm,
+            </if>
+        </trim>
+    </sql>
+    <sql id="gxjzgAddValue">
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+             uuid(),
+            <if test="gh!=null">
+                #{gh},
+            </if>
+            <if test="dwh!=null">
+                #{dwh},
+            </if>
+            <if test="xm!=null">
+                #{xm},
+            </if>
+            <if test="xb!=null">
+                #{xb},
+            </if>
+            <if test="ssbm!=null">
+                #{ssbm},
+            </if>
+        </trim>
+    </sql>
+
+    <!--    根据id查询学生-->
+    <select id="findById" parameterType="java.lang.String" resultType="com.jkh.j2eedemo.entity.Gxjzg">
+        select * from gxjzg where jnm=#{jnm}
+   </select>
+
+    <update id="edit" parameterType="com.jkh.j2eedemo.entity.Gxbm">
+        update gxjzg
+        <set>
+            <if test="gh!=null">
+              gh= #{gh},
+            </if>
+            <if test="dwh!=null">
+              dwh=  #{dwh},
+            </if>
+            <if test="xm!=null">
+                xm=#{xm},
+            </if>
+            <if test="xb!=null">
+               xb=#{xb},
+            </if>
+            <if test="ssbm!=null">
+               ssbm= #{ssbm},
+            </if>
+        </set>
+        where jnm=#{jnm}
+    </update>
+    <!--    测试删除学生-->
+    <delete id="del" parameterType="com.jkh.j2eedemo.entity.Gxbm">
+    delete from gxjzg where jnm =#{id}
+   </delete>
+    <insert id="add" parameterType="com.jkh.j2eedemo.entity.Gxjzg">
+    insert  into gxjzg <include refid="gxjzgcol"></include> values <include refid="gxjzgAddValue"></include>
+    </insert>
+    <sql id="findCondition">
+        <where>
+            <choose>
+                <when test="xm!=null and xm!=''">
+                    and xm like '%${xm}%'
+                </when>
+                <when test="dwh!=null and dwh!=''">
+                    and dwh like '%${xh}%'
+                </when>
+                <when test="ssbm!='' and ssbm!=null">
+                    and ssbm=#{ssbm}
+                </when>
+                <otherwise>
+                    and jnm is not null
+                </otherwise>
+            </choose>
+        </where>
+    </sql>
+    <select id="getRowsCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+        select count(*) total from gxjzg
+        <include refid="findCondition"></include>
+    </select>
+    <select id="findByPage" parameterType="java.util.Map" resultType="java.util.Map">
+        select * from gxjzg
+        <include refid="findCondition"></include>
+        limit #{startpage},#{rowscount}
+    </select>
+    <delete id="batchDel" parameterType="java.util.Map">
+    delete from gxjzg where jnm in (#{ids})
+   </delete>
+</mapper>
+
+
+

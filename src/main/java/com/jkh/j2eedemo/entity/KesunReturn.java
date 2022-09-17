@@ -5,6 +5,21 @@ public class KesunReturn {
     private String message;
     private Object obj;
 
+    public KesunReturn(String code, String message, Object obj) {
+        this.code = code;
+        this.message = message;
+        this.obj = obj;
+    }
+
+    public KesunReturn(String code, String message) {
+        this.code = code;
+        this.message = message;
+    }
+
+    public KesunReturn() {
+
+    }
+
     public String getCode() {
         return code;
     }

@@ -1,47 +1,226 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.jkh.j2eedemo.dao.GxxsMapper">
-    <resultMap id="BaseResultMap" type="com.jkh.j2eedemo.entity.Gxxs">
-        <id column="jnm" jdbcType="VARCHAR" property="jnm" />
-        <result column="xh" jdbcType="VARCHAR" property="xh" />
-        <result column="dwh" jdbcType="VARCHAR" property="dwh" />
-        <result column="xm" jdbcType="VARCHAR" property="xm" />
-        <result column="ywxm" jdbcType="VARCHAR" property="ywxm" />
-        <result column="xmpy" jdbcType="VARCHAR" property="xmpy" />
-        <result column="cym" jdbcType="VARCHAR" property="cym" />
-        <result column="xb" jdbcType="CHAR" property="xb" />
-        <result column="csrq" jdbcType="DATE" property="csrq" />
-        <result column="csd" jdbcType="VARCHAR" property="csd" />
-        <result column="jg" jdbcType="VARCHAR" property="jg" />
-        <result column="mz" jdbcType="VARCHAR" property="mz" />
-        <result column="gj" jdbcType="VARCHAR" property="gj" />
-        <result column="sfzjlx" jdbcType="VARCHAR" property="sfzjlx" />
-        <result column="sfzjh" jdbcType="VARCHAR" property="sfzjh" />
-        <result column="hyzk" jdbcType="CHAR" property="hyzk" />
-        <result column="zzmm" jdbcType="VARCHAR" property="zzmm" />
-        <result column="jkzk" jdbcType="VARCHAR" property="jkzk" />
-        <result column="xyzj" jdbcType="VARCHAR" property="xyzj" />
-        <result column="xx" jdbcType="CHAR" property="xx" />
-        <result column="zjyxq" jdbcType="DATE" property="zjyxq" />
-        <result column="ssbm" jdbcType="VARCHAR" property="ssbm" />
-        <result column="ssbj" jdbcType="VARCHAR" property="ssbj" />
-    </resultMap>
-  <insert id="insert" parameterType="com.jkh.j2eedemo.entity.Gxxs">
-    insert into gxxs (jnm, xh, dwh,
-      xm, ywxm, xmpy, cym,
-      xb, csrq, csd, jg,
-      mz, gj, sfzjlx, sfzjh,
-      hyzk, zzmm, jkzk, xyzj,
-      xx, zjyxq, ssbm, ssbj)
-    values (uuid(), #{xh,jdbcType=VARCHAR}, #{dwh,jdbcType=VARCHAR},
-      rand_name(1), #{ywxm,jdbcType=VARCHAR}, #{xmpy,jdbcType=VARCHAR}, #{cym,jdbcType=VARCHAR},
-      #{xb,jdbcType=CHAR}, #{csrq,jdbcType=DATE}, #{csd,jdbcType=VARCHAR}, #{jg,jdbcType=VARCHAR},
-      #{mz,jdbcType=VARCHAR}, #{gj,jdbcType=VARCHAR}, #{sfzjlx,jdbcType=VARCHAR}, #{sfzjh,jdbcType=VARCHAR},
-      #{hyzk,jdbcType=CHAR}, #{zzmm,jdbcType=VARCHAR}, #{jkzk,jdbcType=VARCHAR}, #{xyzj,jdbcType=VARCHAR},
-      #{xx,jdbcType=CHAR}, #{zjyxq,jdbcType=DATE}, #{ssbm,jdbcType=VARCHAR}, #{ssbj,jdbcType=VARCHAR})
-  </insert>
+<mapper namespace="com.jkh.j2eedemo.dao.IGxxs">
+    <sql id="mysq">
+        name,myAge,sno,
+        case when mySex='1' then '男'
+             when mySex='0' then '女'
+             else mySex end mySex
+    </sql>
+
+    <sql id="addStu">
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            jnm,
+            <if test="xm!=null">
+                xm,
+            </if>
+            <if test="ywxm!=null">
+                ywxm,
+            </if>
+            <if test="ssbj!=null">
+                ssbj,
+            </if>
+            <if test="dwh!=null">
+                dwh,
+            </if>
+            <if test="ssbm!=null">
+                ssbm,
+            </if>
+            <if test="xh!=null">
+                xh,
+            </if>
+            <if test="xb!=null">
+                xb,
+            </if>
+            <if test="csrq!=null">
+                csrq,
+            </if>
+        </trim>
+    </sql>
+    <sql id="addResult">
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            uuid(),
+            <if test="xm!=null">
+                #{xm},
+            </if>
+            <if test="ywxm!=null">
+                #{ywxm},
+            </if>
+            <if test="ssbj!=null">
+                #{ssbj},
+            </if>
+            <if test="dwh!=null">
+                #{dwh},
+            </if>
+            <if test="ssbm!=null">
+                #{ssbm},
+            </if>
+            <if test="xh!=null">
+                #{xh},
+            </if>
+            <if test="xb!=null">
+                #{xb},
+            </if>
+            <if test="csrq!=null">
+                #{csrq},
+            </if>
+        </trim>
+    </sql>
+    <select id="findById" parameterType="java.lang.String" resultType="com.jkh.j2eedemo.entity.Gxxs">
+        select * from gxxs where jnm=#{jnm}
+</select>
+
+    <select id="find" parameterType="java.util.Map" resultType="java.util.Map">
+        select
+        <include refid="mysq"></include>
+        from student
+        <where>
+            <choose>
+                <when test="id!=null and id!=''">
+                    and id like '%${id}%'
+                </when>
+                <when test="id==null or id=='' and name!=null and name!=''">
+                    and name like '%${name}%'
+                </when>
+                <otherwise>
+                    and id like '${id}'
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+
+
+    <insert id="add" parameterType="com.jkh.j2eedemo.entity.Gxxs">
+        insert into gxxs
+        <include refid="addStu">
+        </include>values
+        <include refid="addResult"></include>
+    </insert>
+
+    <update id="edit" parameterType="com.jkh.j2eedemo.entity.Gxxs">
+        update gxxs
+        <set>
+            <if test="xm!=null">
+                xm=#{xm},
+            </if>
+            <if test="ssbj!=null">
+                ssbj=#{ssbj},
+            </if>
+            <if test="xh!=null">
+                xh=#{xh},
+            </if>
+            <if test="hyzk!=null">
+                hyzk=#{hyzk},
+            </if>
+            <if test="jg!=null">
+                jg=#{jg},
+            </if>
+            <if test="mz!=null">
+                mz=#{mz},
+            </if>
+            <if test="jkzk!=null">
+                jkzk=#{jkzk},
+            </if>
+            <if test="zzmm!=null">
+                zzmm=#{zzmm},
+            </if>
+            <if test="gj!=null">
+                gj=#{gj},
+            </if>
+            <if test="csrq!=null">
+                csrq=#{csrq},
+            </if>
+            <if test="sfzjh!=null">
+                sfzjh=#{sfzjh},
+            </if>
+            <if test="xb!=null">
+                xb=#{xb},
+            </if>
+            <if test="cym!=null">
+                cym=#{cym},
+            </if>
+            <if test="zjyxq!=null">
+                zjyxq=#{zjyxq},
+            </if>
+            <if test="csd!=null">
+                csd=#{csd},
+            </if>
+            <if test="ssbm!=null">
+                ssbm=#{ssbm},
+            </if>
+        </set>
+        where jnm=#{jnm}
+    </update>
+    <!--    批量新增学生-->
+    <insert id="batchSave" parameterType="java.util.List">
+        insert into student (id,name,myAge,myClass,mySex,sno,number,createdate) values
+        <foreach collection="list" item="stu" separator=",">
+            <trim suffix=")" prefix="(">
+                #{stu.id},#{stu.name},#{stu.myAge},#{stu.myClass.id},#{stu.mySex},#{stu.sno},#{stu.number},now()
+            </trim>
+        </foreach>
+    </insert>
+    <!--    测试删除学生-->
+    <delete id="del" parameterType="com.jkh.j2eedemo.entity.Gxxs">
+    delete from gxxs where jnm =#{id}
+   </delete>
+    <!--    批量修改学生信息-->
+    <update id="batchUpdat" parameterType="java.util.List">
+        <foreach collection="list" item="stu" separator=";">
+            update student
+            <set>
+                <if test="stu.name!=null">,name=#{stu.name}</if>
+                <if test="stu.myAge!=null">,myAge=#{stu.myAge}</if>
+                <if test="stu.number!=null">,number=#{stu.number}</if>
+                <if test="stu.myClass!=null">,myClass=#{stu.myClass}</if>
+            </set>
+            where
+            <if test="stu.id!=null">id=#{stu.id}</if>
+        </foreach>
+    </update>
+    <sql id="findCondition">
+        <!--        <where>-->
+        <!--            <choose>-->
+        <!--                <when test="xm!=null and xm!=''">-->
+        <!--                    and xm like '%${xm}%'-->
+        <!--                </when>-->
+        <!--                <when test="xh!=null and xh!=''">-->
+        <!--                    and xh like '%${xh}%'-->
+        <!--                </when>-->
+        <!--                <when test="ssbj!='' and ssbj!=null">-->
+        <!--                    and ssbj=#{ssbj}-->
+        <!--                </when>-->
+        <!--                <otherwise>-->
+        <!--                    and xh is not null-->
+        <!--                </otherwise>-->
+        <!--            </choose>-->
+        <!--        </where>-->
+        where xh is not null
+        <if test="xh!=null and xh!=''">
+            and xh=#{xh}
+        </if>
+        <if test="xm!=null and xm!=''">
+            and xm like '%${xm}%'
+        </if>
+        <if test="ssbj!=null and ssbj!=''">
+            and ssbj=#{ssbj}
+        </if>
+        <if test="xb!=null">
+            xh=#{xh}
+        </if>
+    </sql>
+
+    <select id="getRowsCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+        select count(*) total from gxxs
+        <include refid="findCondition"></include>
+    </select>
+    <select id="findByPage" parameterType="java.util.Map" resultType="java.util.Map">
+        select * from gxxs
+        <include refid="findCondition"></include>
+        limit #{startpage},#{rowscount}
+    </select>
+    <delete id="batchDel" parameterType="java.util.Map">
+    delete from gxxs where jnm in (#{ids})
+   </delete>
 </mapper>
-
-
-

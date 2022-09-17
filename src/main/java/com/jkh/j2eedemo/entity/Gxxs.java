@@ -4,7 +4,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Date;
 @Component
-public class Gxxs {
+public class Gxxs extends AbsSuperObject {
     private String jnm;
 
     private String xh;

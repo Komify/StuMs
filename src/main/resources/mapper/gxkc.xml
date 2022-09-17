@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jkh.j2eedemo.dao.IGxkc">
+
+    <sql id="add">
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            jnm,
+
+            <if test="sszy!=null">
+                sszy,
+            </if>
+            <if test="kch!=null">
+                kch,
+            </if>
+            <if test="kcmc!=null">
+                kcmc,
+            </if>
+
+            <if test="kcfzr!=null">
+                kcfzr,
+            </if>
+        </trim>
+    </sql>
+    <sql id="addResult">
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            uuid(),
+            <if test="sszy!=null">
+                #{sszy},
+            </if>
+            <if test="kch!=null">
+                #{kch},
+            </if>
+            <if test="kcmc!=null">
+                #{kcmc},
+            </if>
+            <if test="kcjj!=null">
+                #{kcjj},
+            </if>
+            <if test="kcfzr!=null">
+                #{kcfzr},
+            </if>
+        </trim>
+    </sql>
+
+<!--    <resultMap id="stumapper" type="com.jkh.j2eedemo.entity.Student">-->
+<!--        <id column="id" property="id"></id>-->
+<!--        <result column="sno" property="sno"></result>-->
+<!--        <result column="name" property="name"></result>-->
+<!--        <association property="myClass" column="myClass" javaType="com.jkh.j2eedemo.entity.StudentClass"-->
+<!--                     select="com.jkh.j2eedemo.dao.IGxbjTest.findById">-->
+<!--        </association>-->
+<!--    </resultMap>-->
+    <!--    根据id查询学生-->
+    <select id="findById" parameterType="java.lang.String" resultType="com.jkh.j2eedemo.entity.Gxkc">
+        select sszy,kch,kcmc,kcfzr from gxkc where jnm=#{jnm}
+</select>
+
+
+    <insert id="add" parameterType="com.jkh.j2eedemo.entity.Gxkc">
+        insert into gxkc
+        <include refid="add">
+        </include>values
+        <include refid="addResult"></include>
+    </insert>
+    <update id="edit" parameterType="com.jkh.j2eedemo.entity.Gxkc">
+        update gxkc
+        <set>
+            <if test="sszy!=null">
+                sszy=#{sszy},
+            </if>
+            <if test="kch!=null">
+                kch=#{kch},
+            </if>
+            <if test="kcmc!=null">
+                kcmc=#{kcmc},
+            </if>
+            <if test="kcfzr!=null">
+                kcfzr=#{kcfzr},
+            </if>
+        </set>
+        where jnm=#{jnm}
+    </update>
+
+    <!--    测试删除学生-->
+    <delete id="del" parameterType="com.jkh.j2eedemo.entity.Gxkc">
+    delete from gxkc where jnm =#{id}
+   </delete>
+
+    <sql id="findCondition">
+        <where>
+            <choose>
+                <when test="kch!=null and kch!=''">
+                    and kch like '%${kch}%'
+                </when>
+                <when test="sszy!=null and sszy!=''">
+                    and sszy like '%${sszy}%'
+                </when>
+                <when test="kcmc!=null and kcmc!=''">
+                    and kcmc like '%${kcmc}%'
+                </when>
+                <when test="kcfzr!='' and kcfzr!=null">
+                    and kcfzr=#{kcfzr}
+                </when>
+                <otherwise>
+                    and jnm is not null
+                </otherwise>
+            </choose>
+        </where>
+    </sql>
+
+    <select id="getRowsCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+        select count(*) total from gxkc
+        <include refid="findCondition"></include>
+    </select>
+    <select id="findByPage" parameterType="java.util.Map" resultType="java.util.Map">
+        select * from gxkc
+        <include refid="findCondition"></include>
+        limit #{startpage},#{rowscount}
+    </select>
+    <delete id="batchDel" parameterType="java.util.Map">
+    delete from gxkc where jnm in (#{ids})
+   </delete>
+</mapper>

@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jkh.j2eedemo.dao.IGxcj">
+
+    <sql id="add">
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            jnm,
+            <if test="xsjnm!=null">
+                xsjnm,
+            </if>
+            <if test="kcjnm!=null">
+                kcjnm,
+            </if>
+            <if test="jsjnm!=null">
+               jsjnm,
+            </if>
+
+            <if test="xqjnm!=null">
+               xqjnm,
+            </if>
+            <if test="cj!=null">
+                cj,
+            </if>
+            <if test="lx!=null">
+                lx,
+            </if>
+            <if test="kssj!=null">
+                kssj,
+            </if>
+            <if test="sjcjsj!=null">
+                sjcjsj,
+            </if>
+            <if test="yhzh!=null">
+                yhzh,
+            </if>
+        </trim>
+    </sql>
+    <sql id="addResult">
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            #{jnm},
+            <if test="xsjnm!=null">
+                #{xsjnm},
+            </if>
+            <if test="kcjnm!=null">
+                #{kcjnm},
+            </if>
+            <if test="jsjnm!=null">
+                #{jsjnm},
+            </if>
+            <if test="xqjnm!=null">
+                #{xqjnm},
+            </if>
+            <if test="cj!=null">
+                #{cj},
+            </if>
+            <if test="lx!=null">
+                #{lx},
+            </if>
+            <if test="kssj!=null">
+                #{kssj},
+            </if>
+            <if test="sjcjsj!=null">
+                #{sjcjsj},
+            </if>
+            <if test="yhzh!=null">
+                #{yhzh},
+            </if>
+
+        </trim>
+    </sql>
+
+<!--    <resultMap id="stumapper" type="com.jkh.j2eedemo.entity.Student">-->
+<!--        <id column="id" property="id"></id>-->
+<!--        <result column="sno" property="sno"></result>-->
+<!--        <result column="name" property="name"></result>-->
+<!--        <association property="myClass" column="myClass" javaType="com.jkh.j2eedemo.entity.StudentClass"-->
+<!--                     select="com.jkh.j2eedemo.dao.IGxbjTest.findById">-->
+<!--        </association>-->
+<!--    </resultMap>-->
+    <!--    根据id-->
+    <select id="findById" parameterType="java.lang.String" resultType="com.jkh.j2eedemo.entity.Gxcj">
+        select xsjnm,kcjnm,jsjnm,xqjnm,cj,lx,kssj,sjcjsj,yhzh from gxcj where jnm=#{jnm}
+</select>
+
+
+    <insert id="add" parameterType="com.jkh.j2eedemo.entity.Gxcj">
+        insert into gxcj
+        <include refid="add">
+        </include>values
+        <include refid="addResult"></include>
+    </insert>
+    <update id="edit" parameterType="com.jkh.j2eedemo.entity.Gxcj">
+        update gxcj
+        <set>
+            <if test="xsjnm!=null">
+             xsjnm=#{xsjnm},
+            </if>
+            <if test="kcjnm!=null">
+                kcjnm=#{kcjnm},
+            </if>
+            <if test="jsjnm!=null">
+                jsjnm=#{jsjnm},
+            </if>
+
+            <if test="xqjnm!=null">
+                xqjnm=#{xqjnm},
+            </if>
+            <if test="cj!=null">
+                cj=#{cj},
+            </if>
+            <if test="lx!=null">
+                lx=#{lx},
+            </if>
+            <if test="kssj!=null">
+                kssj=#{kssj},
+            </if>
+            <if test="sjcjsj!=null">
+                sjcjsj=#{sjcjsj},
+            </if>
+            <if test="yhzh!=null">
+                yhzh=#{yhzh},
+            </if>
+        </set>
+        where jnm=#{jnm}
+    </update>
+
+    <!--    测试删除学生-->
+    <delete id="del" parameterType="com.jkh.j2eedemo.entity.Gxcj">
+    delete from gxcj where jnm =#{id}
+   </delete>
+
+    <sql id="findCondition">
+        <where>
+            <choose>
+                <when test="xsjnm!=null and xsjnm!=''">
+                    and xsjnm like '%${xsjnm}%'
+                </when>
+                <when test="kcjnm!=null and kcjnm!=''">
+                    and kcjnm like '%${kcjnm}%'
+                </when>
+                <when test="jsjnm!=null and jsjnm!=''">
+                    and jsjnm like '%${jsjnm}%'
+                </when>
+                <when test="xqjnm!='' and xqjnm!=null">
+                    and xqjnm=#{xqjnm}
+                </when>
+                <when test="cj!='' and cj!=null">
+                    and cj=#{cj}
+                </when>
+                <when test="lx!='' and lx!=null">
+                    and lx=#{lx}
+                </when>
+                <when test="kssj!='' and kssj!=null">
+                    and kssj=#{kssj}
+                </when>
+                <when test="sjcjsj!='' and sjcjsj!=null">
+                    and sjcjsj=#{sjcjsj}
+                </when>
+                <when test="yhzh!='' and yhzh!=null">
+                    and yhzh=#{yhzh}
+                </when>
+                <otherwise>
+                    and jnm is not null
+                </otherwise>
+            </choose>
+        </where>
+    </sql>
+
+    <select id="getRowsCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+        select count(*) total from gxcj
+        <include refid="findCondition"></include>
+    </select>
+    <select id="findByPage" parameterType="java.util.Map" resultType="java.util.Map">
+        select * from gxcj
+        <include refid="findCondition"></include>
+        limit #{startpage},#{rowscount}
+    </select>
+    <delete id="batchDel" parameterType="java.util.Map">
+    delete from gxcj where jnm in (#{ids})
+   </delete>
+</mapper>

@@ -1,5 +1,6 @@
 package com.jkh.j2eedemo.dao;
 
+import com.jkh.j2eedemo.bll.impl.AbsSuperService;
 import com.jkh.j2eedemo.entity.AbsSuperObject;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -40,10 +41,14 @@ public interface IDoData {
 
     //    批量删除
     @Transactional
-    int batchDel(Map<String, Object> cons);
+    int batchDel(Map<String,Object> cons);
     @Transactional
     int batchUpdat(List<AbsSuperObject> objs);
 
     List<AbsSuperObject> findByPage(Map<String,Object> cons);
     int getRowsCount(Map<String,Object> cons);
+//    查询所有
+    List findall();
+//    根据name查询对象
+    AbsSuperObject findbyname(String name);
 }
