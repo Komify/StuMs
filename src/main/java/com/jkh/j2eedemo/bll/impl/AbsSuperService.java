@@ -88,7 +88,7 @@ public abstract class AbsSuperService implements AbsSuperServiceInter {
         if ((Boolean) back.getObj() == false) return back;
         int addNum = getDao().add(model);
         if (addNum > 0) {
-            back.setCode("6666");
+            back.setCode("200");
             back.setMessage("添加数据成功！");
             back.setObj(1);
         } else {

@@ -15,26 +15,53 @@
             <if test="xm!=null">
                 xm,
             </if>
-            <if test="ywxm!=null">
-                ywxm,
-            </if>
             <if test="ssbj!=null">
                 ssbj,
-            </if>
-            <if test="dwh!=null">
-                dwh,
-            </if>
-            <if test="ssbm!=null">
-                ssbm,
             </if>
             <if test="xh!=null">
                 xh,
             </if>
-            <if test="xb!=null">
-                xb,
+            <if test="hyzk!=null">
+                hyzk,
+            </if>
+            <if test="jg!=null">
+                jg,
+            </if>
+            <if test="mz!=null">
+                mz,
+            </if>
+            <if test="jkzk!=null">
+                jkzk,
+            </if>
+            <if test="zzmm!=null">
+                zzmm,
+            </if>
+            <if test="gj!=null">
+                gj,
             </if>
             <if test="csrq!=null">
                 csrq,
+            </if>
+            <if test="sfzjh!=null">
+                sfzjh,
+            </if>
+            <if test="xb!=null">
+                xb,
+            </if>
+            <if test="cym!=null">
+                cym,
+            </if>
+            <if test="zjyxq!=null">
+                zjyxq,
+            </if>
+            <if test="csd!=null">
+                csd,
+            </if>
+            <if test="ssbm!=null">
+                ssbm,
+            </if>
+            <if test="ywxm!=null">
+                ywxm,
             </if>
         </trim>
     </sql>
@@ -44,26 +71,53 @@
             <if test="xm!=null">
                 #{xm},
             </if>
-            <if test="ywxm!=null">
-                #{ywxm},
-            </if>
             <if test="ssbj!=null">
                 #{ssbj},
-            </if>
-            <if test="dwh!=null">
-                #{dwh},
-            </if>
-            <if test="ssbm!=null">
-                #{ssbm},
             </if>
             <if test="xh!=null">
                 #{xh},
             </if>
-            <if test="xb!=null">
-                #{xb},
+            <if test="hyzk!=null">
+                #{hyzk},
+            </if>
+            <if test="jg!=null">
+                #{jg},
+            </if>
+            <if test="mz!=null">
+                #{mz},
+            </if>
+            <if test="jkzk!=null">
+                #{jkzk},
+            </if>
+            <if test="zzmm!=null">
+                #{zzmm},
+            </if>
+            <if test="gj!=null">
+                #{gj},
             </if>
             <if test="csrq!=null">
                 #{csrq},
+            </if>
+            <if test="sfzjh!=null">
+                #{sfzjh},
+            </if>
+            <if test="xb!=null">
+                #{xb},
+            </if>
+            <if test="cym!=null">
+                #{cym},
+            </if>
+            <if test="zjyxq!=null">
+                #{zjyxq},
+            </if>
+            <if test="csd!=null">
+                #{csd},
+            </if>
+            <if test="ssbm!=null">
+                #{ssbm},
+            </if>
+            <if test="ywxm!=null">
+                #{ywxm},
             </if>
         </trim>
     </sql>
@@ -149,6 +203,9 @@
             <if test="ssbm!=null">
                 ssbm=#{ssbm},
             </if>
+            <if test="ywxm!=null">
+                ywxm=#{ywxm},
+            </if>
         </set>
         where jnm=#{jnm}
     </update>
@@ -223,4 +280,11 @@
     <delete id="batchDel" parameterType="java.util.Map">
     delete from gxxs where jnm in (#{ids})
    </delete>
+
+    <update id="uploadtouxiang" parameterType="com.jkh.j2eedemo.entity.Gxxs">
+        update gxxs set  zp=#{zp} where xh=#{xh}
+    </update>
+    <select id="findtouxiang" parameterType="java.lang.String" resultType="com.jkh.j2eedemo.entity.Gxxs">
+        select zp from gxxs where xh=#{xh}
+    </select>
 </mapper>

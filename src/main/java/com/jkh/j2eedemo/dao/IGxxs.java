@@ -9,5 +9,7 @@ public interface IGxxs extends IDoData{
 
 @Select("select * from student where id=#{id}")
 Gxxs findMe(String id);
+int uploadtouxiang(Gxxs gxxs);
+Gxxs findtouxiang(String jnm);
 }
 
