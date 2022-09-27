@@ -28,7 +28,7 @@ public interface AbsSuperServiceInter {
 
     KesunReturn batchSave(List<AbsSuperObject> objs);
 
-    KesunReturn batchUpdate(List<AbsSuperObject> objs);
+    KesunReturn batchUpdate(List<Map<String,Object>>objs);
 
     KesunReturn getRowscount(Map<String, Object> cons);
 

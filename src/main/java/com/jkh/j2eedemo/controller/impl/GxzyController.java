@@ -102,7 +102,7 @@ public class GxzyController {
             gxzy.setZymc(String.valueOf(cons.get("zymc")));
             gxzy.setSsxx(String.valueOf(cons.get("ssxx")));
 
-            gxzy.setZxbm(String.valueOf(cons.get("zxbm")));
+            gxzy.setSsbm(String.valueOf(cons.get("zxbm")));
 
 
             System.out.println(gxzy.getId());
@@ -119,4 +119,13 @@ public class GxzyController {
 
 
     }
+    @PostMapping("findallsszy")
+    public  KesunReturn findallsszy(){
+        return bll.findall();
+    }
+    @PostMapping("findbyzyname")
+    public  KesunReturn findallsszy(String zyname){
+        return bll.findbyzyname(zyname);
+    }
+
 }

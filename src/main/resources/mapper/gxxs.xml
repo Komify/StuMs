@@ -125,20 +125,23 @@
         select * from gxxs where jnm=#{jnm}
 </select>
 
-    <select id="find" parameterType="java.util.Map" resultType="java.util.Map">
+    <select id="find" parameterType="Map" resultType="java.util.Map">
         select
-        <include refid="mysq"></include>
-        from student
+        *
+        from gxxs
         <where>
             <choose>
                 <when test="id!=null and id!=''">
                     and id like '%${id}%'
                 </when>
-                <when test="id==null or id=='' and name!=null and name!=''">
+                <when test="ssbj!=null and ssbj!=''">
+                    and ssbj like '%${ssbj}%'
+                </when>
+                <when test="name!=null and name!=''">
                     and name like '%${name}%'
                 </when>
                 <otherwise>
-                    and id like '${id}'
+                    and jnm like '${jnm}'
                 </otherwise>
             </choose>
         </where>
@@ -225,15 +228,15 @@
     <!--    批量修改学生信息-->
     <update id="batchUpdat" parameterType="java.util.List">
         <foreach collection="list" item="stu" separator=";">
-            update student
+            update gxxs
             <set>
-                <if test="stu.name!=null">,name=#{stu.name}</if>
-                <if test="stu.myAge!=null">,myAge=#{stu.myAge}</if>
-                <if test="stu.number!=null">,number=#{stu.number}</if>
-                <if test="stu.myClass!=null">,myClass=#{stu.myClass}</if>
+                <if test="stu.xm!=null">,xm=#{stu.xm}</if>
+                <if test="stu.ssbm!=null">,ssbm=#{stu.ssbm}</if>
+                <if test="stu.sszy!=null">,number=#{stu.sszy}</if>
+                <if test="stu.ssbj!=null">,ssbj=#{stu.ssbj}</if>
             </set>
             where
-            <if test="stu.id!=null">id=#{stu.id}</if>
+            <if test="stu.jnm!=null">jnm=#{stu.jnm}</if>
         </foreach>
     </update>
     <sql id="findCondition">
@@ -255,7 +258,7 @@
         <!--        </where>-->
         where xh is not null
         <if test="xh!=null and xh!=''">
-            and xh=#{xh}
+            and xh like '%${xh}%'
         </if>
         <if test="xm!=null and xm!=''">
             and xm like '%${xm}%'

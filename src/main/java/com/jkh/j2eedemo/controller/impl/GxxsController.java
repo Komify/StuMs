@@ -2,6 +2,7 @@ package com.jkh.j2eedemo.controller.impl;
 
 import com.jkh.j2eedemo.annotation.UserLoginToken;
 import com.jkh.j2eedemo.bll.impl.Gxxsbll;
+import com.jkh.j2eedemo.entity.AbsSuperObject;
 import com.jkh.j2eedemo.entity.Gxxs;
 import com.jkh.j2eedemo.entity.KesunReturn;
 import com.jkh.j2eedemo.util.dateUtil;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -164,5 +166,13 @@ public class GxxsController {
             return back;
         }
 
+    }
+    @PostMapping("finds")
+    public  KesunReturn finds(@RequestBody Map<String,Object> cons){
+    return bll.finds(cons);
+    }
+    @PostMapping("batchupdate")
+    public KesunReturn batchupdate( @RequestBody List <Map<String,Object>>editlist){
+        return bll.batchUpdate(editlist);
     }
 }

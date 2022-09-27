@@ -130,6 +130,10 @@
     <delete id="batchDel" parameterType="java.util.Map">
     delete from gxjzg where jnm in (#{ids})
    </delete>
+
+    <select id="findall" resultType="com.jkh.j2eedemo.entity.Gxjzg">
+        select * from gxjzg
+    </select>
 </mapper>
 
 

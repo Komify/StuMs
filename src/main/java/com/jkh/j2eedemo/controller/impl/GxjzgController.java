@@ -102,4 +102,8 @@ public class GxjzgController {
         }
 
     }
+    @PostMapping("findall")
+    public KesunReturn findalljzg(){
+    return bll.findall();
+    }
 }

@@ -55,9 +55,9 @@ public class GxbjController {
     }
     @PostMapping("findmore")
     public KesunReturn findmore(@RequestBody Map<String,Object> cons ){
-        if (cons.size()!=0&&cons.get("jnh")!=null){
+        if (cons.size()!=0&&cons.get("jnm")!=null){
             Gxbj gxbj = new Gxbj();
-            gxbj.setId(cons.get("jnh").toString());
+            gxbj.setId(cons.get("jnm").toString());
             bll.setModel(gxbj);
             return bll.findById();
         }else {
@@ -70,10 +70,10 @@ public class GxbjController {
     @PostMapping("del")
     @ResponseBody
     public KesunReturn del(@RequestBody Map<String, Object> cons) {
-        if (!cons.isEmpty()&&cons.get("jnh")!=null){
+        if (!cons.isEmpty()&&cons.get("jnm")!=null){
             Gxbj gxbj = new Gxbj();
-            System.out.println("id"+cons.get("jnh"));
-            gxbj.setId(String.valueOf(cons.get("jnh")));
+            System.out.println("id"+cons.get("jnm"));
+            gxbj.setId(String.valueOf(cons.get("jnm")));
             System.out.println(gxbj.getId());
             bll.setModel(gxbj);
             KesunReturn back = bll.delete();
@@ -89,11 +89,11 @@ public class GxbjController {
     @PostMapping("add")
     @ResponseBody
     public KesunReturn add(@RequestBody Map<String, Object> cons) {
-        if (!cons.isEmpty()&&cons.get("bh")!=null||
+        if (!cons.isEmpty()&&cons.get("bjbh")!=null||
                 cons.get("bjmc")!=null||cons.get("bzxm")!=null||
                 cons.get("bzrxm")!=null||cons.get("sszy")!=null){
             Gxbj gxbj = new Gxbj();
-            gxbj.setBh(String.valueOf(cons.get("bh")));
+            gxbj.setBjbh(String.valueOf(cons.get("bjbh")));
             gxbj.setBjmc(String.valueOf(cons.get("bjmc")));
             gxbj.setBzrxm(String.valueOf(cons.get("bzrxm")));
             gxbj.setBzxm(String.valueOf(cons.get("bzxm")));

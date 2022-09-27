@@ -6,9 +6,9 @@
 
     <sql id="add">
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            jnh,
-            <if test="bh!=null">
-                bh,
+            jnm,
+            <if test="bjbh!=null">
+                bjbh,
             </if>
             <if test="bjmc!=null">
                 bjmc,
@@ -27,8 +27,8 @@
     <sql id="addResult">
         <trim prefix="(" suffix=")" suffixOverrides=",">
             uuid(),
-            <if test="bh!=null">
-                #{bh},
+            <if test="bjbh!=null">
+                #{bjbh},
             </if>
             <if test="bjmc!=null">
                 #{bjmc},
@@ -47,7 +47,7 @@
 
     <!--    根据id查询班级-->
     <select id="findById" parameterType="java.lang.String" resultType="com.jkh.j2eedemo.entity.Gxbj">
-        select * from gxbj where jnh=#{jnh}
+        select * from gxbj where jnm=#{jnm}
    </select>
 
 
@@ -61,8 +61,8 @@
     <update id="edit" parameterType="com.jkh.j2eedemo.entity.Gxbj">
         update gxbj
         <set>
-            <if test="bh!=null">
-                bh=#{bh},
+            <if test="bjbh!=null">
+                bjbh=#{bjbh},
             </if>
             <if test="bjmc!=null">
                 bjmc=#{bjmc},
@@ -74,19 +74,22 @@
                 sszy=#{sszy},
             </if>
         </set>
-        where jnh=#{jnh}
+        where jnm=#{jnm}
     </update>
 
     <!--    测试删除-->
     <delete id="del" parameterType="com.jkh.j2eedemo.entity.Gxbj">
-    delete from gxbj where jnh =#{id}
+    delete from gxbj where jnm=#{id}
    </delete>
 
     <sql id="findCondition">
         <where>
             <choose>
-                <when test="bh!=null and bh!=''">
-                    and bh like '%${bh}%'
+                <when test="bjbh!=null and bjbh!=''">
+                    and bjbh like '%${bjbh}%'
+                </when>
+                <when test="jnm!=null and jnm!=''">
+                    and jnm like '%${jnm}%'
                 </when>
                 <when test="bjmc!=null and bjmc!=''">
                     and bjmc like '%${bjmc}%'
@@ -95,7 +98,7 @@
                     and sszy=#{sszy}
                 </when>
                 <otherwise>
-                    and jnh is not null
+                    and jnm is not null
                 </otherwise>
             </choose>
         </where>
@@ -111,10 +114,10 @@
         limit #{startpage},#{rowscount}
     </select>
     <delete id="batchDel" parameterType="java.util.Map">
-    delete from gxbj where jnh in (#{ids})
+    delete from gxbj where jnm in (#{ids})
    </delete>
 <!--    查询所有班级-->
     <select id="findall" resultType="java.util.Map">
-        select distinct(bjmc) from gxbj;
+        select distinct(bjmc),bzrxm,sszy,jnm,bjbh,jbny,bzxm from gxbj;
     </select>
 </mapper>

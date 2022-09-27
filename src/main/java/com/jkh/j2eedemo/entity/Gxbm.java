@@ -2,6 +2,8 @@ package com.jkh.j2eedemo.entity;
 
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class Gxbm extends AbsSuperObject{
     private String jnm;
@@ -17,6 +19,16 @@ public class Gxbm extends AbsSuperObject{
     private String xz;
 
     private String gxdm;
+
+    public List getGxzy() {
+        return gxzy;
+    }
+
+    public void setGxzy(List gxzy) {
+        this.gxzy = gxzy;
+    }
+
+    private List gxzy;
 
     public String getJnm() {
         return jnm;

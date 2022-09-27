@@ -25,7 +25,7 @@ public class Gxzy extends AbsSuperObject{
 
     private String qsxq;
 
-    private String zxbm;
+    private String ssbm;
 
     public String getJnm() {
         return jnm;
@@ -107,11 +107,11 @@ public class Gxzy extends AbsSuperObject{
         this.qsxq = qsxq == null ? null : qsxq.trim();
     }
 
-    public String getZxbm() {
-        return zxbm;
+    public String getSsbm() {
+        return ssbm;
     }
 
-    public void setZxbm(String zxbm) {
-        this.zxbm = zxbm == null ? null : zxbm.trim();
+    public void setSsbm(String ssbm) {
+        this.ssbm = ssbm;
     }
 }

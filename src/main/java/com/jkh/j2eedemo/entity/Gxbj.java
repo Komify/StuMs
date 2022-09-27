@@ -4,9 +4,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Gxbj extends AbsSuperObject{
-    private String jnh;
+    private String jnm;
 
-    private String bh;
+    private String bjbh;
 
     private String bjmc;
 
@@ -18,20 +18,20 @@ public class Gxbj extends AbsSuperObject{
 
     private String bzxm;
 
-    public String getJnh() {
-        return jnh;
+    public String getJnm() {
+        return jnm;
     }
 
-    public void setJnh(String jnh) {
-        this.jnh = jnh == null ? null : jnh.trim();
+    public void setJnm(String jnm) {
+        this.jnm = jnm == null ? null : jnm.trim();
     }
 
-    public String getBh() {
-        return bh;
+    public String getBjbh() {
+        return bjbh;
     }
 
-    public void setBh(String bh) {
-        this.bh = bh == null ? null : bh.trim();
+    public void setBjbh(String bjbh) {
+        this.bjbh = bjbh == null ? null : bjbh.trim();
     }
 
     public String getBjmc() {

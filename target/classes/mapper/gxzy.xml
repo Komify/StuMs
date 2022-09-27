@@ -16,8 +16,8 @@
                 ssxx,
             </if>
 
-            <if test="zxbm!=null">
-                zxbm,
+            <if test="ssbm!=null">
+                ssbm,
             </if>
         </trim>
     </sql>
@@ -41,7 +41,7 @@
     </sql>
     <!--    根据id查询学生-->
     <select id="findById" parameterType="java.lang.String" resultType="com.jkh.j2eedemo.entity.Gxzy">
-        select zyh,zymc,ssxx,zxbm from gxzy where jnm=#{jnm}
+        select zyh,zymc,ssxx,ssbm from gxzy where jnm=#{jnm}
 </select>
 
 
@@ -63,8 +63,8 @@
             <if test="ssxx!=null">
                 ssxx=#{ssxx},
             </if>
-            <if test="zxbm!=zxbm">
-                zxbm=#{zxbm},
+            <if test="ssbm!=ssbm">
+                ssbm=#{ssbm},
             </if>
         </set>
         where jnm=#{jnm}
@@ -87,8 +87,8 @@
                 <when test="ssxx!=null and ssxx!=''">
                     and ssxx like '%${ssxx}%'
                 </when>
-                <when test="zxbm!='' and zxbm!=null">
-                    and zxbm=#{zxbm}
+                <when test="ssbm!='' and ssbm!=null">
+                    and ssbm=#{ssbm}
                 </when>
                 <otherwise>
                     and jnm is not null
@@ -109,4 +109,10 @@
     <delete id="batchDel" parameterType="java.util.Map">
     delete from gxzy where jnm in (#{ids})
    </delete>
+    <select id="findall" resultType="com.jkh.j2eedemo.entity.Gxzy">
+        select * from gxzy
+    </select>
+    <select id="findbyssbmname" parameterType="String" resultType="com.jkh.j2eedemo.entity.Gxzy">
+        select  * from  gxzy where ssbm =#{ssbm}
+   </select>
 </mapper>

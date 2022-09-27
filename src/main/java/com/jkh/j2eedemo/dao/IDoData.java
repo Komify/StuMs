@@ -43,7 +43,7 @@ public interface IDoData {
     @Transactional
     int batchDel(Map<String,Object> cons);
     @Transactional
-    int batchUpdat(List<AbsSuperObject> objs);
+    int batchUpdat(List<Map<String,Object>> objs);
 
     List<AbsSuperObject> findByPage(Map<String,Object> cons);
     int getRowsCount(Map<String,Object> cons);

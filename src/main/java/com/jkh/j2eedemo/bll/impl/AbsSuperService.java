@@ -58,11 +58,11 @@ public abstract class AbsSuperService implements AbsSuperServiceInter {
 
         AbsSuperObject obj = getDao().findById(model.getId());
         if (obj == null) {
-            back.setCode("0002");
+            back.setCode("0000");
             back.setMessage("未查询到结果！");
             back.setObj(null);
         } else {
-            back.setCode("1000");
+            back.setCode("200");
             back.setMessage("查询成功");
             back.setObj(obj);
         }
@@ -198,7 +198,7 @@ public abstract class AbsSuperService implements AbsSuperServiceInter {
         if ((Boolean) back.getObj() == false) return back;
         List<Map<String, Object>> stus = getDao().find(cons);
         if (stus.size() > 0) {
-            back.setCode("6666");
+            back.setCode("200");
             back.setMessage("数据查询成功！共查询到[" + stus.size() + "]条数据");
             back.setObj(stus);
         } else {
@@ -287,7 +287,7 @@ public abstract class AbsSuperService implements AbsSuperServiceInter {
      * author:jkh
      */
     @Override
-    public KesunReturn batchUpdate(List<AbsSuperObject> objs) {
+    public KesunReturn batchUpdate(List<Map<String,Object>> objs) {
         KesunReturn back = new KesunReturn();
         if (objs == null || objs.size() == 0) {
             back.setCode("0000");
